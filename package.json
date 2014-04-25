@@ -1,0 +1,30 @@
+{
+  "name": "eddesign",
+  "version": "0.1.0",
+  "description": "Eddies Website",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:handyCAPS/eddesign"
+  },
+  "author": "Tim Doppenberg",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/handyCAPS/eddesign/issues"
+  },
+  "homepage": "https://github.com/handyCAPS/eddesign",
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-autoprefixer": "~0.7.2",
+    "load-grunt-tasks": "~0.4.0",
+    "grunt-contrib-sass": "~0.7.3"
+  }
+}

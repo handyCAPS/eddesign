@@ -1,0 +1,44 @@
+Index: css/eddesign.css
+===================================================================
+--- css/eddesign.css
++++ css/eddesign.css
+@@ -470,8 +470,9 @@
+  */
+ @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003142}}
+ hr {
+   -moz-box-sizing: content-box;
++  -webkit-box-sizing: content-box;
+   box-sizing: content-box;
+   height: 0; }
+ 
+ /*
+@@ -651,8 +652,10 @@
+  */
+ @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003337}}
+ input[type="checkbox"],
+ input[type="radio"] {
++  -webkit-box-sizing: border-box;
++  -moz-box-sizing: border-box;
+   box-sizing: border-box;
+   /* 1 */
+   padding: 0;
+   /* 2 */ }
+@@ -2977,14 +2980,18 @@
+     width: 1px !important; } }
+ /* endif */
+ @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_body\.scss}line{font-family:\000031}}
+ *, *:before, *:after {
++  -webkit-box-sizing: border-box;
++  -moz-box-sizing: border-box;
+   box-sizing: border-box; }
+ 
+ @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_body\.scss}line{font-family:\000035}}
+ body {
+   font-size: 16px;
+   width: auto;
++  background: -webkit-gradient(linear, left bottom, left top, from(#cecece), to(#737373));
++  background: -webkit-linear-gradient(bottom, #cecece, #737373);
+   background: linear-gradient(to top, #cecece, #737373); }
+ 
+ @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_nav\.scss}line{font-family:\000033}}
+ .top-nav {

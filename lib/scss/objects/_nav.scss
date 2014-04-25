@@ -1,0 +1,38 @@
+
+
+.top-nav {
+	background-color: $black;
+	width: 80%;
+	margin: 3rem auto;
+		nav {
+			@extend .cf;
+		}
+		ul {
+			float: right;
+			margin: 0.25rem;
+			margin-right: 0.5rem;
+		}
+		li {
+			padding: 0.25rem;
+				&:hover {
+					background-color: $darkGrey;
+				}
+		}
+		a {
+			color: $white;
+			text-decoration: none;
+			display: block;
+			width: 100%;
+		}
+}
+
+.nav-label {
+	float: left;
+		h1 {
+			margin: 0.5rem;
+			font-size: 1.2rem;
+			font-style: italic;
+			font-weight: normal;
+			color: $white;
+		}
+}

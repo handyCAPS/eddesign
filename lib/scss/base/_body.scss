@@ -7,3 +7,8 @@ body {
 	width: auto;
 	background: linear-gradient(to top, $lightGrey, $darkGrey);
 }
+
+#outerWrap {
+	max-width: 1000px;
+	margin: 0 auto;
+}

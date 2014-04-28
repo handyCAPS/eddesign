@@ -1,8 +1,8 @@
-/*! eddesign - v0.1.0 - 2014-04-24
+/*! eddesign - v0.1.0 - 2014-04-26
 * https://github.com/handyCAPS/eddesign
-* Copyright (c) 2014 ; Licensed  */
+* Copyright (c) 2014 ; Licensed BSD-2-Clause */
 
-@charset "CP850";
+@charset "Windows-1252";
 /*------------------------------------*\
     INUIT.CSS
 \*------------------------------------*/
@@ -349,7 +349,7 @@
 /*
  * Correct `block` display not defined in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\0000322}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\0000311}}
 article,
 aside,
 details,
@@ -367,7 +367,7 @@ summary {
 /*
  * Correct `inline-block` display not defined in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\0000332}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\0000330}}
 audio,
 canvas,
 video {
@@ -426,7 +426,7 @@ a:focus {
 /*
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\0000395}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\0000394}}
 a:active,
 a:hover {
   outline: 0; }
@@ -453,7 +453,7 @@ abbr[title] {
 /*
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003126}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003125}}
 b,
 strong {
   font-weight: bold; }
@@ -486,7 +486,7 @@ mark {
 /*
  * Correct font family set oddly in Safari 5 and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003164}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003161}}
 code,
 kbd,
 pre,
@@ -518,7 +518,7 @@ small {
 /*
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003198}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003197}}
 sub,
 sup {
   font-size: 75%;
@@ -589,7 +589,7 @@ legend {
  * 2. Correct font size not being inherited in all browsers.
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003278}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003275}}
 button,
 input,
 select,
@@ -605,7 +605,7 @@ textarea {
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003290}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003289}}
 button,
 input {
   line-height: normal; }
@@ -616,7 +616,7 @@ input {
  * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
  * Correct `select` style inheritance in Firefox 4+ and Opera.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003302}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003301}}
 button,
 select {
   text-transform: none; }
@@ -628,7 +628,7 @@ select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003314}}
 button,
 html input[type="button"],
 input[type="reset"],
@@ -641,7 +641,7 @@ input[type="submit"] {
 /*
  * Re-set default cursor for disabled elements.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003327}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003326}}
 button[disabled],
 html input[disabled] {
   cursor: default; }
@@ -650,7 +650,7 @@ html input[disabled] {
  * 1. Address box sizing set to `content-box` in IE 8/9.
  * 2. Remove excess padding in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003337}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003336}}
 input[type="checkbox"],
 input[type="radio"] {
   -webkit-box-sizing: border-box;
@@ -678,7 +678,7 @@ input[type="search"] {
  * Remove inner padding and search cancel button in Safari 5 and Chrome
  * on OS X.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003361}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003360}}
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
@@ -686,7 +686,7 @@ input[type="search"]::-webkit-search-decoration {
 /*
  * Remove inner padding and border in Firefox 4+.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003370}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_normalize\.scss}line{font-family:\00003369}}
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
@@ -724,7 +724,7 @@ table {
 /**
 * Let’s make the box model all nice, shall we...?
 */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_reset\.scss}line{font-family:\0000316}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_reset\.scss}line{font-family:\0000314}}
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -735,7 +735,7 @@ table {
 /**
  * The usual...
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_reset\.scss}line{font-family:\0000330}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_reset\.scss}line{font-family:\0000325}}
 h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 dl, dd, ol, ul,
@@ -776,7 +776,7 @@ img {
 /**
  * Give form elements some cursor interactions...
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_reset\.scss}line{font-family:\0000371}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_reset\.scss}line{font-family:\0000366}}
 label,
 input,
 textarea,
@@ -785,7 +785,7 @@ select,
 option {
   cursor: pointer; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_reset\.scss}line{font-family:\0000377}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_reset\.scss}line{font-family:\0000374}}
 .text-input:active,
 .text-input:focus,
 textarea:active,
@@ -818,7 +818,7 @@ textarea:focus {
 /**
  * Base elements
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_shared\.scss}line{font-family:\0000324}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_shared\.scss}line{font-family:\0000312}}
 h1, h2, h3, h4, h5, h6, hgroup,
 ul, ol, dl,
 blockquote, p, address,
@@ -971,7 +971,7 @@ hgroup .hN {
  * The `.lede` class is used to make the introductory text (usually a paragraph)
  * of a document slightly larger.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_paragraphs\.scss}line{font-family:\000039}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_paragraphs\.scss}line{font-family:\000038}}
 .lede,
 .lead {
   font-size: 18px;
@@ -984,7 +984,7 @@ hgroup .hN {
 /**
  * A series of classes for setting tiny type; for use in smallprint etc.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_smallprint\.scss}line{font-family:\000038}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_smallprint\.scss}line{font-family:\000037}}
 .smallprint,
 .milli {
   font-size: 12px;
@@ -1165,7 +1165,7 @@ img {
 /**
  * Non-fluid images if you specify `width` and/or `height` attributes.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_images\.scss}line{font-family:\0000319}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_images\.scss}line{font-family:\0000318}}
 img[width],
 img[height] {
   max-width: none; }
@@ -1230,7 +1230,7 @@ figure > img {
 /**
  * Remove vertical spacing from nested lists.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_lists\.scss}line{font-family:\000039}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_lists\.scss}line{font-family:\000038}}
 li > ul,
 li > ol {
   margin-bottom: 0; }
@@ -1304,13 +1304,13 @@ li > ol {
 table {
   width: 100%; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_tables\.scss}line{font-family:\0000362}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_tables\.scss}line{font-family:\0000361}}
 th,
 td {
   padding: 6px;
   text-align: left; }
   @media screen and (min-width: 480px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_tables\.scss}line{font-family:\0000362}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_tables\.scss}line{font-family:\0000361}}
     th,
     td {
       padding: 12px; } }
@@ -1456,7 +1456,7 @@ td {
 /**
  * Bordered tables
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_tables\.scss}line{font-family:\00003129}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_tables\.scss}line{font-family:\00003128}}
 .table--bordered th,
 .table--bordered td {
   border: 1px solid #cccccc; }
@@ -1508,7 +1508,7 @@ fieldset {
    <input type=password class=text-input>
  *
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_forms\.scss}line{font-family:\0000325}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_forms\.scss}line{font-family:\0000324}}
 .text-input,
 textarea {
   /**
@@ -1569,7 +1569,7 @@ textarea {
    </li>
  *
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_forms\.scss}line{font-family:\0000390}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_forms\.scss}line{font-family:\0000389}}
 label,
 .label {
   display: block; }
@@ -1608,7 +1608,7 @@ label,
 /*
  * Labels in check-lists
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_forms\.scss}line{font-family:\00003129}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_forms\.scss}line{font-family:\00003127}}
 .check-label,
 .check-list label,
 .check-list .label {
@@ -1652,7 +1652,7 @@ label,
   display: inline-block;
   visibility: hidden; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_forms\.scss}line{font-family:\00003172}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_forms\.scss}line{font-family:\00003171}}
 .text-input:active + .extra-help,
 .text-input:focus + .extra-help {
   visibility: visible; }
@@ -1682,7 +1682,7 @@ label,
 .nav {
   list-style: none;
   margin-left: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/objects\/_nav\.scss}line{font-family:\0000329}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/objects\/_nav\.scss}line{font-family:\0000328}}
   .nav > li,
   .nav > li > a {
     display: inline-block;
@@ -2587,7 +2587,7 @@ label,
 .brand-face {
   font-family: "Helvetica Neue", sans-serif!important; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_brand\.scss}line{font-family:\0000316}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_brand\.scss}line{font-family:\0000315}}
 .brand-color,
 .brand-colour {
   color: #4a8ec2!important; }
@@ -2894,7 +2894,7 @@ label,
  * Hide content off-screen without resorting to `display:none;`, also provide
  * breakpoint specific hidden elements.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_helper\.scss}line{font-family:\00003172}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_helper\.scss}line{font-family:\00003171}}
 .accessibility,
 .visuallyhidden {
   border: 0 !important;
@@ -2907,7 +2907,7 @@ label,
   width: 1px !important; }
 
 @media only screen and (max-width: 480px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_helper\.scss}line{font-family:\00003179}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_helper\.scss}line{font-family:\00003178}}
   .accessibility--palm,
   .visuallyhidden--palm {
     border: 0 !important;
@@ -2919,7 +2919,7 @@ label,
     position: absolute !important;
     width: 1px !important; } }
 @media only screen and (min-width: 481px) and (max-width: 1023px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_helper\.scss}line{font-family:\00003179}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_helper\.scss}line{font-family:\00003178}}
   .accessibility--lap,
   .visuallyhidden--lap {
     border: 0 !important;
@@ -2931,7 +2931,7 @@ label,
     position: absolute !important;
     width: 1px !important; } }
 @media only screen and (min-width: 481px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_helper\.scss}line{font-family:\00003179}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_helper\.scss}line{font-family:\00003178}}
   .accessibility--lap-and-up,
   .visuallyhidden--lap-and-up {
     border: 0 !important;
@@ -2943,7 +2943,7 @@ label,
     position: absolute !important;
     width: 1px !important; } }
 @media only screen and (max-width: 1023px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_helper\.scss}line{font-family:\00003179}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_helper\.scss}line{font-family:\00003178}}
   .accessibility--portable,
   .visuallyhidden--portable {
     border: 0 !important;
@@ -2955,7 +2955,7 @@ label,
     position: absolute !important;
     width: 1px !important; } }
 @media only screen and (min-width: 1024px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_helper\.scss}line{font-family:\00003179}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_helper\.scss}line{font-family:\00003178}}
   .accessibility--desk,
   .visuallyhidden--desk {
     border: 0 !important;
@@ -2967,7 +2967,7 @@ label,
     position: absolute !important;
     width: 1px !important; } }
 @media only screen and (min-width: 1200px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_helper\.scss}line{font-family:\00003179}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_helper\.scss}line{font-family:\00003178}}
   .accessibility--desk-wide,
   .visuallyhidden--desk-wide {
     border: 0 !important;
@@ -2993,10 +2993,15 @@ body {
   background: -webkit-linear-gradient(bottom, #cecece, #737373);
   background: linear-gradient(to top, #cecece, #737373); }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_body\.scss}line{font-family:\0000311}}
+#outerWrap {
+  max-width: 1000px;
+  margin: 0 auto; }
+
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_nav\.scss}line{font-family:\000033}}
 .top-nav {
   background-color: #222222;
-  width: 80%;
+  width: 100%;
   margin: 3rem auto; }
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_nav\.scss}line{font-family:\0000310}}
   .top-nav ul {
@@ -3026,3 +3031,8 @@ body {
     font-style: italic;
     font-weight: normal;
     color: #f0f0f0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_slider\.scss}line{font-family:\000033}}
+.slider-wrapper {
+  width: 75%;
+  margin: 0 auto; }

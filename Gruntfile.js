@@ -61,7 +61,6 @@ module.exports = function(grunt) {
     sass: {
       dev: {
         options: {
-          compass: true,
           debugInfo: true,
           banner: '<%= banner %>'
         },

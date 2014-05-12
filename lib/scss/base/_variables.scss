@@ -5,8 +5,17 @@ $base-spacing-unit: 24px;
 
 // Colors
 
-$black: #222;
-$white: #F0F0F0;
+$black: #050505;
+$white: #F5F5F5;
 
 $darkGrey: #737373;
 $lightGrey: #cecece;
+
+// Fonts
+
+$codaStack: 'Coda', Arial, sans-serif;
+$lobsterStack: 'Lobster', Georgia, Times, serif;
+$openStack: 'Open Sans', Arial, sans-serif;
+
+$headerFont: $codaStack;
+$bodyFont: $openStack;

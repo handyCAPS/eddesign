@@ -23,9 +23,9 @@ Index: css/eddesign.css
    /* 1 */
    padding: 0;
    /* 2 */ }
-@@ -2977,14 +2980,18 @@
-     width: 1px !important; } }
- /* endif */
+@@ -3052,15 +3055,19 @@
+   margin: 0 0 0.5rem 1rem; }
+ 
  @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_body\.scss}line{font-family:\000031}}
  *, *:before, *:after {
 +  -webkit-box-sizing: border-box;
@@ -35,10 +35,48 @@ Index: css/eddesign.css
  @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_body\.scss}line{font-family:\000035}}
  body {
    font-size: 16px;
+   font-family: "Open Sans", Arial, sans-serif;
    width: auto;
-+  background: -webkit-gradient(linear, left bottom, left top, from(#cecece), to(#737373));
-+  background: -webkit-linear-gradient(bottom, #cecece, #737373);
-   background: linear-gradient(to top, #cecece, #737373); }
++  background: -webkit-gradient(linear, left top, left bottom, from(#cecece), to(#737373));
++  background: -webkit-linear-gradient(top, #cecece, #737373);
+   background: linear-gradient(to bottom, #cecece, #737373);
+   text-rendering: optimizeLegibility; }
  
- @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_body\.scss}line{font-family:\0000311}}
- #outerWrap {
+ @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_body\.scss}line{font-family:\0000313}}
+@@ -3149,8 +3156,10 @@
+       top: 0;
+       right: 0;
+       bottom: 0;
+       left: 0;
++      -webkit-transform: translateZ(200px);
++      -ms-transform: translateZ(200px);
+       transform: translateZ(200px); }
+ @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_slider\.scss}line{font-family:\0000321}}
+   .slider-wrapper .miniJack {
+     border: 0.66rem solid #050505; }
+@@ -3185,21 +3194,25 @@
+   .sidebar-menu li {
+     background-color: #cecece;
+     margin-bottom: 24px;
+     padding: 0 0.25rem;
++    -webkit-box-shadow: 0px 3px 0px #737373;
+     box-shadow: 0px 3px 0px #737373;
+     position: relative;
+     top: 0;
++    -webkit-transition: 0.2s;
+     transition: 0.2s; }
+ @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\0000328}}
+     .sidebar-menu li:active {
++      -webkit-box-shadow: 0 0 0 #cecece;
+       box-shadow: 0 0 0 #cecece;
+       top: 3px; }
+ @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\0000333}}
+   .sidebar-menu a {
+     color: #737373;
+     text-shadow: 0px 0.2px 0.2px whitesmoke;
+     display: block;
++    -webkit-transition: 0.3s;
+     transition: 0.3s; }
+ @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\0000338}}
+     .sidebar-menu a:hover, .sidebar-menu a:focus {
+       color: #050505; }

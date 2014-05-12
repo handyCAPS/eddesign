@@ -1,8 +1,8 @@
-/*! eddesign - v0.1.0 - 2014-04-26
+/*! eddesign - v0.1.0 - 2014-05-11
 * https://github.com/handyCAPS/eddesign
 * Copyright (c) 2014 ; Licensed BSD-2-Clause */
 
-@charset "Windows-1252";
+@charset "CP850";
 /*------------------------------------*\
     INUIT.CSS
 \*------------------------------------*/
@@ -57,7 +57,7 @@
     $CONTENTS
 \*------------------------------------*/
 /**
- * CONTENTS............You’re reading it!
+ * CONTENTS............Youâ€™re reading it!
  * WARNING.............Here be dragons!
  * IMPORTS.............Begin importing the sections below
  *
@@ -135,7 +135,7 @@
     $DEFAULTS
 \*------------------------------------*/
 /**
- * inuit.css’ default variables. Redefine these in your `_vars.scss` file (found
+ * inuit.cssâ€™ default variables. Redefine these in your `_vars.scss` file (found
  * in the inuit.css-web-template) to override them.
  */
 /*------------------------------------*\
@@ -162,7 +162,7 @@
  * Base font-family.
  */
 /**
- * Default colour for objects’ borders etc.
+ * Default colour for objectsâ€™ borders etc.
  */
 /*------------------------------------*\
     $RESPONSIVE
@@ -200,7 +200,7 @@
  * English quote marks?
  */
 /**
- * If you want English quotes then please do not edit these; they’re only here
+ * If you want English quotes then please do not edit these; theyâ€™re only here
  * because Sass needs them.
  */
 /**
@@ -319,11 +319,11 @@
 /**
  * Media query mixin.
  *
- * It’s not great practice to define solid breakpoints up-front, preferring to
- * modify your design when it needs it, rather than assuming you’ll want a
- * change at ‘mobile’. However, as inuit.css is required to take a hands off
+ * Itâ€™s not great practice to define solid breakpoints up-front, preferring to
+ * modify your design when it needs it, rather than assuming youâ€™ll want a
+ * change at â€˜mobileâ€™. However, as inuit.css is required to take a hands off
  * approach to design decisions, this is the closest we can get to baked-in
- * responsiveness. It’s flexible enough to allow you to set your own breakpoints
+ * responsiveness. Itâ€™s flexible enough to allow you to set your own breakpoints
  * but solid enough to be frameworkified.
  *
  * We define some broad breakpoints in our vars file that are picked up here
@@ -722,7 +722,7 @@ table {
  * As per: csswizardry.com/2011/10/reset-restarted
  */
 /**
-* Let’s make the box model all nice, shall we...?
+* Letâ€™s make the box model all nice, shall we...?
 */
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_reset\.scss}line{font-family:\0000314}}
 *, *:before, *:after {
@@ -767,7 +767,7 @@ ins {
   border-bottom: 1px solid; }
 
 /**
- * So that `alt` text is visually offset if images don’t load.
+ * So that `alt` text is visually offset if images donâ€™t load.
  */
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/generic\/_reset\.scss}line{font-family:\0000359}}
 img {
@@ -1065,7 +1065,7 @@ blockquote {
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_quotes\.scss}line{font-family:\0000378}}
 blockquote {
   /**
-   * .4em is roughly equal to the width of the opening “ that we wish to hang.
+   * .4em is roughly equal to the width of the opening â€œ that we wish to hang.
    */
   text-indent: -0.41em; }
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_quotes\.scss}line{font-family:\0000384}}
@@ -1129,7 +1129,7 @@ pre mark {
  *
  * 1. Make the list look like code.
  * 2. Give the list flush numbers with a leading zero.
- * 3. Make sure lines of code don’t wrap.
+ * 3. Make sure lines of code donâ€™t wrap.
  * 4. Give the code form by forcing the `code` to honour white-space.
  */
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/base\/_code\.scss}line{font-family:\0000354}}
@@ -1642,7 +1642,7 @@ label,
    <small class=extra-help>.edu emails only</small>
  *
  * We leave the help text in the document flow and merely set it to
- * `visibility:hidden;`. This means that it won’t interfere with anything once
+ * `visibility:hidden;`. This means that it wonâ€™t interfere with anything once
  * it reappears.
  *
  */
@@ -1660,6 +1660,65 @@ label,
 /**
  * Objects and abstractions
  */
+/*------------------------------------*\
+    $GRIDS
+\*------------------------------------*/
+/**
+ * Fluid and nestable grid system, e.g.:
+ *
+   <div class="grid">
+
+       <div class="grid__item  one-third">
+           <p>One third grid</p>
+       </div><!--
+
+    --><div class="grid__item  two-thirds">
+           <p>Two thirds grid</p>
+       </div><!--
+
+    --><div class="grid__item  one-half">
+           <p>One half grid</p>
+       </div><!--
+
+    --><div class="grid__item  one-quarter">
+           <p>One quarter grid</p>
+       </div><!--
+
+    --><div class="grid__item  one-quarter">
+           <p>One quarter grid</p>
+       </div>
+
+   </div>
+ *
+ * Demo: jsfiddle.net/inuitcss/CLYUC
+ *
+ */
+/**
+ * Grid wrapper
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/objects\/_grids\.scss}line{font-family:\0000341}}
+.grid {
+  margin-left: -24px;
+  list-style: none;
+  margin-bottom: 0; }
+
+/**
+ * Very infrequently occuring grid wrappers as children of grid wrappers.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/objects\/_grids\.scss}line{font-family:\0000351}}
+.grid > .grid {
+  margin-left: 0; }
+
+/**
+ * Grid
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/bower_components\/inuit\.css\/objects\/_grids\.scss}line{font-family:\0000359}}
+.grid__item {
+  display: inline-block;
+  width: 100%;
+  padding-left: 24px;
+  vertical-align: top; }
+
 /*------------------------------------*\
     $NAV
 \*------------------------------------*/
@@ -1925,15 +1984,15 @@ label,
   width: 91.666%; }
 
 /**
- * If you have set `$responsive` to ‘true’ in `_vars.scss` then you now have
- * access to these classes. You can define at which breakpoint you’d like an
+ * If you have set `$responsive` to â€˜trueâ€™ in `_vars.scss` then you now have
+ * access to these classes. You can define at which breakpoint youâ€™d like an
  * element to be a certain size, e.g.:
  *
  * `<div class="g  one-quarter  lap-one-half  palm-one-whole"> ... </div>`
  *
- * This would create a `div` that, at ‘desktop’ sizes, takes up a quarter of the
- * horizontal space, a half of that space at ‘tablet’ sizes, and goes full width
- * at ‘mobile’ sizes.
+ * This would create a `div` that, at â€˜desktopâ€™ sizes, takes up a quarter of the
+ * horizontal space, a half of that space at â€˜tabletâ€™ sizes, and goes full width
+ * at â€˜mobileâ€™ sizes.
  *
  * Demo: jsfiddle.net/inuitcss/WS4Ge
  *
@@ -2554,7 +2613,7 @@ label,
   .desk-eleven-twelfths {
     width: 91.666%; } }
 /**
- * If you have set the additional `$responsive-extra` variable to ‘true’ in
+ * If you have set the additional `$responsive-extra` variable to â€˜trueâ€™ in
  * `_vars.scss` then you now have access to the following class available to
  * accomodate much larger screen resolutions.
  */
@@ -2597,7 +2656,7 @@ label,
 \*------------------------------------*/
 /**
  * A series of helper classes to use arbitrarily. Only use a helper class if an
- * element/component doesn’t already have a class to which you could apply this
+ * element/component doesnâ€™t already have a class to which you could apply this
  * styling, e.g. if you need to float `.main-nav` left then add `float:left;` to
  * that ruleset as opposed to adding the `.float--left` class to the markup.
  *
@@ -2979,6 +3038,22 @@ label,
     position: absolute !important;
     width: 1px !important; } }
 /* endif */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_helpers\.scss}line{font-family:\000033}}
+.left {
+  float: left; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_helpers\.scss}line{font-family:\000037}}
+.right {
+  float: right; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_helpers\.scss}line{font-family:\0000311}}
+img.left {
+  margin: 0 1rem 0.5rem 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_helpers\.scss}line{font-family:\0000315}}
+img.right {
+  margin: 0 0 0.5rem 1rem; }
+
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_body\.scss}line{font-family:\000031}}
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
@@ -2988,21 +3063,51 @@ label,
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_body\.scss}line{font-family:\000035}}
 body {
   font-size: 16px;
+  font-family: "Open Sans", Arial, sans-serif;
   width: auto;
-  background: -webkit-gradient(linear, left bottom, left top, from(#cecece), to(#737373));
-  background: -webkit-linear-gradient(bottom, #cecece, #737373);
-  background: linear-gradient(to top, #cecece, #737373); }
+  background: -webkit-gradient(linear, left top, left bottom, from(#cecece), to(#737373));
+  background: -webkit-linear-gradient(top, #cecece, #737373);
+  background: linear-gradient(to bottom, #cecece, #737373);
+  text-rendering: optimizeLegibility; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_body\.scss}line{font-family:\0000311}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_body\.scss}line{font-family:\0000313}}
 #outerWrap {
-  max-width: 1000px;
-  margin: 0 auto; }
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_body\.scss}line{font-family:\0000319}}
+#bodyWrap {
+  width: 100%; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_tags\.scss}line{font-family:\000032}}
+a {
+  color: #cecece;
+  text-decoration: none; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_tags\.scss}line{font-family:\000035}}
+  a:hover, a:focus {
+    color: #737373; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_tags\.scss}line{font-family:\0000310}}
+hr {
+  margin-bottom: 24px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_footer\.scss}line{font-family:\000032}}
+.page-footer {
+  width: 100%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_footer\.scss}line{font-family:\000034}}
+  .page-footer h3 {
+    text-align: center;
+    color: whitesmoke;
+    text-shadow: 0px 0.8px 0.3px #050505;
+    font-family: "Coda", Arial, sans-serif;
+    font-size: 1.5rem; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_nav\.scss}line{font-family:\000033}}
 .top-nav {
-  background-color: #222222;
+  background-color: #050505;
   width: 100%;
-  margin: 3rem auto; }
+  margin: 3rem auto 1.75rem; }
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_nav\.scss}line{font-family:\0000310}}
   .top-nav ul {
     float: right;
@@ -3012,27 +3117,102 @@ body {
   .top-nav li {
     padding: 0.25rem; }
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_nav\.scss}line{font-family:\0000317}}
-    .top-nav li:hover {
+    .top-nav li:hover, .top-nav li.active-menu-item {
       background-color: #737373; }
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_nav\.scss}line{font-family:\0000321}}
   .top-nav a {
-    color: #f0f0f0;
+    color: whitesmoke;
     text-decoration: none;
     display: block;
-    width: 100%; }
+    width: 100%;
+    font-family: "Coda", Arial, sans-serif; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_nav\.scss}line{font-family:\0000329}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_nav\.scss}line{font-family:\0000330}}
 .nav-label {
   float: left; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_nav\.scss}line{font-family:\0000331}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_nav\.scss}line{font-family:\0000332}}
   .nav-label h1 {
     margin: 0.5rem;
+    margin-left: 0.75rem;
     font-size: 1.2rem;
+    font-family: "Lobster", Georgia, Times, serif;
     font-style: italic;
     font-weight: normal;
-    color: #f0f0f0; }
+    color: whitesmoke; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_slider\.scss}line{font-family:\000033}}
 .slider-wrapper {
-  width: 75%;
-  margin: 0 auto; }
+  width: 100%;
+  margin: 0 auto 1.618rem; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_slider\.scss}line{font-family:\000036}}
+  .slider-wrapper .slider-item {
+    position: relative;
+    border: 0.75rem solid #737373; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_slider\.scss}line{font-family:\000039}}
+    .slider-wrapper .slider-item:after {
+      content: '';
+      width: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      -webkit-transform: translateZ(200px);
+      -ms-transform: translateZ(200px);
+      transform: translateZ(200px); }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_slider\.scss}line{font-family:\0000321}}
+  .slider-wrapper .miniJack {
+    border: 0.66rem solid #050505; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_slider\.scss}line{font-family:\0000323}}
+    .slider-wrapper .miniJack img {
+      vertical-align: middle; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_focus\.scss}line{font-family:\000032}}
+.focus {
+  padding: 0 1rem 0.25rem 0;
+  margin-bottom: 24px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_focus\.scss}line{font-family:\000036}}
+  .focus h1 {
+    font-family: "Coda", Arial, sans-serif; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\000036}}
+.side-slide {
+  margin-bottom: 24px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\0000310}}
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\0000316}}
+.sidebar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\0000320}}
+  .sidebar-menu li {
+    background-color: #cecece;
+    margin-bottom: 24px;
+    padding: 0 0.25rem;
+    -webkit-box-shadow: 0px 3px 0px #737373;
+    box-shadow: 0px 3px 0px #737373;
+    position: relative;
+    top: 0;
+    -webkit-transition: 0.2s;
+    transition: 0.2s; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\0000328}}
+    .sidebar-menu li:active {
+      -webkit-box-shadow: 0 0 0 #cecece;
+      box-shadow: 0 0 0 #cecece;
+      top: 3px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\0000333}}
+  .sidebar-menu a {
+    color: #737373;
+    text-shadow: 0px 0.2px 0.2px whitesmoke;
+    display: block;
+    -webkit-transition: 0.3s;
+    transition: 0.3s; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\0000338}}
+    .sidebar-menu a:hover, .sidebar-menu a:focus {
+      color: #050505; }

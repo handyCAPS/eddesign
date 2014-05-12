@@ -1,0 +1,42 @@
+
+.sidebar {
+	// float: right;
+}
+
+.side-slide {
+	margin-bottom: $base-spacing-unit;
+}
+
+.sidebar-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.sidebar-menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+		li {
+			background-color: $lightGrey;
+			margin-bottom: $base-spacing-unit;
+			padding: 0 0.25rem;
+			box-shadow: 0px 3px 0px $darkGrey;
+			position: relative;
+			top: 0;
+			transition: 0.2s;
+				&:active {
+					box-shadow: 0 0 0 $lightGrey;
+					top: 3px;
+				}
+		}
+		a {
+			color: $darkGrey;
+			text-shadow: 0px 0.2px 0.2px $white;
+			display: block;
+			transition: 0.3s;
+				&:hover, &:focus {
+					color: $black;
+				}
+		}
+}

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="nl">
+<head>
+	<meta charset="UTF-8">
+	<title>Eddesign</title>
+	<link href='http://fonts.googleapis.com/css?family=Coda|Lobster|Open+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/eddesign.css">
+</head>
+<body>
+
+<div id="outerWrap" class="grid">
+	<header>
+		<div class="top-nav">
+			<div class="nav-label">
+				<a href="index.html"><h1>Eddesign</h1></a>
+			</div>
+			<nav>
+				<ul class='nav'>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="#">News</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</nav>
+		</div><!--  end .top-nav  -->
+	</header>
+	<div id="bodyWrap" class="grid">
+
+	<section class="focus grid__item two-thirds">
+		<h1>About me</h1>
+		<img alt='placeholder' src="http://placecage.com/160/160" class="left">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, vitae numquam accusantium quam quidem ex impedit aperiam modi! Doloremque, eligendi, ad, aspernatur in reprehenderit voluptatibus earum eius provident voluptas at dolor libero placeat eum beatae illum ducimus quo minima cupiditate optio exercitationem aliquam velit laborum quod.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, iste, modi, aperiam explicabo a similique repudiandae assumenda saepe laudantium officia eius quis alias ipsam odio aliquid repellat molestias quidem reprehenderit vel veritatis facere praesentium quo asperiores excepturi non maiores beatae tenetur blanditiis.</p>
+	</section><!--
+	 --><section class="sidebar grid__item one-third">
+	 <ul class="sidebar-list">
+		<li class="sidebar-list--item">
+		 <div class="sidebar-item">
+		 	<nav>
+		 		<ul class="sidebar-menu">
+		 			<li><a href="">News</a></li>
+		 			<li><a href="">Portfolio</a></li>
+		 			<li><a href="">Contact</a></li>
+		 		</ul>
+		 	</nav>
+		 </div><!--  end .sidebar__item  -->
+		</li>
+<hr>
+		<li class="sidebar-list--item">
+			<div class="side-slide">
+				<div class="slider-item">
+					<img alt='placeholder' src="http://fillmurray.com/300/375" alt="">
+				</div>
+				<div class="slider-item">
+					<img alt='placeholder' src="http://lorempixel.com/300/375" alt="">
+				</div>
+				<div class="slider-item">
+					<img alt='placeholder' src="http://baconmockup.com/300/375" alt="">
+				</div>
+				<div class="slider-item">
+					<img alt='placeholder' src="http://placesheen.com/300/375" alt="">
+				</div>
+				<div class="slider-item">
+					<img alt='placeholder' src="http://lorempixel.com/300/375/abstract" alt="">
+				</div>
+			</div>
+		</li>
+<hr>
+	</ul>
+
+	</section>
+
+	</div><!--  end .body-wrap  -->
+
+	<hr>
+
+	<footer class="page-footer">
+		<h3>Welcome to my portfolio</h3>
+	</footer>
+
+</div><!--  end #outerWrap  -->
+
+<script src="bower_components/handyCAPSSlider/js/handyCAPSSlider.min.js"></script>
+
+<script>
+	handyCAPSSlider.init({
+		container: 'side-slide',
+		bullets: false,
+		minis: false,
+		animType: 'spin'
+	});
+</script>
+
+<script src="js/eddesign.js"></script>
+
+</body>
+</html>

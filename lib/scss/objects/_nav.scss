@@ -3,7 +3,7 @@
 .top-nav {
 	background-color: $black;
 	width: 100%;
-	margin: 3rem auto;
+	margin: 3rem auto 1.75rem;
 		nav {
 			@extend .cf;
 		}
@@ -14,7 +14,7 @@
 		}
 		li {
 			padding: 0.25rem;
-				&:hover {
+				&:hover, &.active-menu-item {
 					background-color: $darkGrey;
 				}
 		}
@@ -23,6 +23,7 @@
 			text-decoration: none;
 			display: block;
 			width: 100%;
+			font-family: $codaStack;
 		}
 }
 
@@ -30,7 +31,9 @@
 	float: left;
 		h1 {
 			margin: 0.5rem;
+			margin-left: 0.75rem;
 			font-size: 1.2rem;
+			font-family: $lobsterStack;
 			font-style: italic;
 			font-weight: normal;
 			color: $white;

@@ -12,13 +12,9 @@ module.exports = function(grunt) {
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
     concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true
-      },
       dist: {
-        src: ['lib/<%= pkg.name %>.js'],
-        dest: 'dist/<%= pkg.name %>.js'
+        src: ['lib/js/<%= pkg.name %>.js'],
+        dest: 'js/<%= pkg.name %>.js'
       }
     },
     uglify: {
@@ -27,7 +23,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: '<%= concat.dist.dest %>',
-        dest: 'dist/<%= pkg.name %>.min.js'
+        dest: 'js/<%= pkg.name %>.min.js'
       }
     },
     jshint: {
@@ -41,7 +37,7 @@ module.exports = function(grunt) {
         noarg: true,
         sub: true,
         undef: true,
-        unused: true,
+        unused: false,
         boss: true,
         eqnull: true,
         browser: true,
@@ -88,7 +84,7 @@ module.exports = function(grunt) {
       },
       lib_test: {
         files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test']
+        tasks: ['jshint:lib_test', 'concat']
       },
       sass: {
         files: 'lib/scss/**/*.scss',

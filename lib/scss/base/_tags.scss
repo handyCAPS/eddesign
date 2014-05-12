@@ -1,0 +1,12 @@
+
+a {
+	color: $lightGrey;
+	text-decoration: none;
+		&:hover, &:focus {
+			color: $darkGrey;
+		}
+}
+
+hr {
+	margin-bottom: $base-spacing-unit;
+}

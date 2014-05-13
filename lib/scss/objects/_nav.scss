@@ -14,7 +14,7 @@
 		}
 		li {
 			padding: 0.25rem;
-				&:hover, &.active-menu-item {
+				&:hover, &:focus, &.current-menu-item {
 					background-color: $darkGrey;
 				}
 		}

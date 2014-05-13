@@ -77,6 +77,23 @@ module.exports = function(grunt) {
         src: 'css/**/*.css'
       }
     },
+    copy: {
+      js: {
+        expand: true,
+        src: ['js/**/*.js', 'bower_components/handyCAPSSlider/**/*.min.js'],
+        dest: 'eddesigntheme'
+      },
+      css: {
+        expand: true,
+        src: ['css/**/*.css'],
+        dest: 'eddesigntheme'
+      },
+      themeRemote: {
+        expand: true,
+        src: 'eddesigntheme/**/*',
+        dest: '../wped/wp-content/themes'
+      }
+    },
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -84,14 +101,15 @@ module.exports = function(grunt) {
       },
       lib_test: {
         files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test', 'concat']
+        tasks: ['jshint:lib_test', 'concat', 'copy']
       },
       sass: {
         files: 'lib/scss/**/*.scss',
-        tasks: ['sass', 'autoprefixer']
+        tasks: ['sass', 'autoprefixer', 'copy']
       },
-      html: {
-        files: '**/*.html'
+      php: {
+        files: 'eddesigntheme/**/*.php',
+        tasks: ['copy']
       },
       options: {
         livereload: true

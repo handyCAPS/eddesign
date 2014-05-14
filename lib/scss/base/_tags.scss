@@ -1,12 +1,18 @@
 
 a {
-	color: $lightGrey;
+	color: $link-color;
 	text-decoration: none;
+	transition: 0.2s;
 		&:hover, &:focus {
-			color: $darkGrey;
+			color: $link-alt-color;
 		}
 }
 
 hr {
 	margin-bottom: $base-spacing-unit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: $header-color;
+	font-family: $headerFont;
 }

@@ -11,6 +11,10 @@ $white: #F5F5F5;
 $darkGrey: #737373;
 $lightGrey: #cecece;
 
+$header-color: $black;
+$link-color: #34495e;
+$link-alt-color: darken(saturate($link-color, 20), 12);
+
 // Fonts
 
 $codaStack: 'Coda', Arial, sans-serif;

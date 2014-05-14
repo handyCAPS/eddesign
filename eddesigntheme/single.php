@@ -51,11 +51,8 @@
 	</header>
 	<div id="bodyWrap" class="grid">
 
-
-
 	<section class="focus grid__item two-thirds palm-one-whole lap-one-whole">
-	<h1><?php wp_title(''); ?></h1>
-	<?php get_template_part('loop', 'blog');?>
+		<?php get_template_part('loop'); ?>
 	</section><!--
 
 	  --><section class="sidebar grid__item one-third palm-one-whole lap-one-whole">

@@ -41,3 +41,34 @@ define ('THEMEPATH', get_stylesheet_directory_uri());
 
 	// Hook into the 'init' action
 	add_action( 'init', 'eddesign_navigation_menus' );
+
+
+	// Register Sidebar
+function eddesign_page_sidebar() {
+
+	$args = array(
+		'id'            => 'pagesidebar',
+		'name'          => __( 'Page sidebar', 'eddesign' ),
+		'description'   => __( 'The default page sidebar', 'eddesign' ),
+		'class'         => '',
+		'before_widget' =>  '<li id="%1s" class="sidebar-list--item widget %2s">',
+		'after_widget'  => '</li><hr>',
+	);
+	register_sidebar( $args );
+
+	}
+
+	// Hook into the 'widgets_init' action
+	add_action( 'widgets_init', 'eddesign_page_sidebar' );
+
+	/**
+	 * Replace [...] with read more tag
+	 * @return String       A new string to add to excerpts
+	 */
+	function eddies_read_more() {
+		return "<a class='read-more' href='" . get_permalink(get_the_id()) . "'> " . _('Read more') . "</a>";
+	}
+
+	add_filter('excerpt_more', 'eddies_read_more');
+
+	add_theme_support( 'post-thumbnails' );

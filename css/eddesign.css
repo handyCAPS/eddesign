@@ -1,4 +1,4 @@
-/*! eddesign - v0.1.0 - 2014-05-12
+/*! eddesign - v0.1.0 - 2014-05-14
 * https://github.com/handyCAPS/eddesign
 * Copyright (c) 2014 ; Licensed BSD-2-Clause */
 
@@ -3054,6 +3054,11 @@ img.left {
 img.right {
   margin: 0 0 0.5rem 1rem; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_helpers\.scss}line{font-family:\0000319}}
+.read-more {
+  display: block;
+  text-align: right; }
+
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_body\.scss}line{font-family:\000031}}
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
@@ -3082,15 +3087,22 @@ body {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_tags\.scss}line{font-family:\000032}}
 a {
-  color: #cecece;
-  text-decoration: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_tags\.scss}line{font-family:\000035}}
+  color: #34495e;
+  text-decoration: none;
+  -webkit-transition: 0.2s;
+  transition: 0.2s; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_tags\.scss}line{font-family:\000036}}
   a:hover, a:focus {
-    color: #737373; }
+    color: #162a3f; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_tags\.scss}line{font-family:\0000310}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_tags\.scss}line{font-family:\0000311}}
 hr {
   margin-bottom: 24px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_tags\.scss}line{font-family:\0000315}}
+h1, h2, h3, h4, h5, h6 {
+  color: #050505;
+  font-family: "Coda", Arial, sans-serif; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/base\/_footer\.scss}line{font-family:\000032}}
 .page-footer {
@@ -3172,8 +3184,8 @@ hr {
   padding: 0 1rem 0.25rem 0;
   margin-bottom: 24px; }
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_focus\.scss}line{font-family:\000036}}
-  .focus h1 {
-    font-family: "Coda", Arial, sans-serif; }
+  .focus h2 {
+    color: #34495e; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\000036}}
 .side-slide {
@@ -3186,12 +3198,12 @@ hr {
   margin: 0; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\0000316}}
-.sidebar-menu {
+.sidebar-list .menu {
   list-style: none;
   margin: 0;
   padding: 0; }
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\0000320}}
-  .sidebar-menu li {
+  .sidebar-list .menu li {
     background-color: #cecece;
     margin-bottom: 24px;
     padding: 0 0.25rem;
@@ -3202,17 +3214,17 @@ hr {
     -webkit-transition: 0.2s;
     transition: 0.2s; }
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\0000328}}
-    .sidebar-menu li:active {
+    .sidebar-list .menu li:active {
       -webkit-box-shadow: 0 0 0 #cecece;
       box-shadow: 0 0 0 #cecece;
       top: 3px; }
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\0000333}}
-  .sidebar-menu a {
+  .sidebar-list .menu a {
     color: #737373;
     text-shadow: 0px 0.2px 0.2px whitesmoke;
     display: block;
     -webkit-transition: 0.3s;
     transition: 0.3s; }
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/eddesign\/lib\/scss\/objects\/_sidebar\.scss}line{font-family:\0000338}}
-    .sidebar-menu a:hover, .sidebar-menu a:focus {
+    .sidebar-list .menu a:hover, .sidebar-list .menu a:focus {
       color: #050505; }

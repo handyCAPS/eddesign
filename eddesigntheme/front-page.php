@@ -82,17 +82,13 @@ Template Name: Home template
 	</footer>
 </div><!--  end #outerWrap  -->
 
-// <script src='<?php echo THEMEPATH ?>/bower_components/handyCAPSSlider/js/handyCAPSSlider.min.js'></script>
+<?php wp_footer(); ?>
 <script>
 	handyCAPSSlider.init({
 		bulletColor: '#323F40',
 		bulletBright: 20
 	});
 </script>
-<script src="<?php echo THEMEPATH ?>/js/eddesign.js"></script>
-
-
-<?php wp_footer(); ?>
 
 </body>
 </html>

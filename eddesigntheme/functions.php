@@ -12,11 +12,11 @@ define ('THEMEPATH', get_stylesheet_directory_uri());
 	 * @param bool $in_footer (optional) Whether to enqueue the script before </head> or before </body>
 	 */
 	function eddesign_script() {
-		wp_register_script( 'handyCAPSSlider', THEMEPATH . '/bower_components/handyCAPSSlider/js/handyCAPSSlider.min.js', array());
-		wp_register_script('eddesign', THEMEPATH . '/js/eddesign.js', array('handyCAPSSlider'));
+		// wp_register_script( 'handyCAPSSlider', THEMEPATH . '/bower_components/handyCAPSSlider/js/handyCAPSSlider.min.js', array());
+		// wp_register_script('eddesign', THEMEPATH . '/js/eddesign.js', array('handyCAPSSlider'));
 
-		wp_enqueue_script('handyCAPSSlider');
-		wp_enqueue_script('eddesign' );
+		// wp_enqueue_script('handyCAPSSlider');
+		// wp_enqueue_script('eddesign' );
 
 		wp_register_style('eddesignstyle', THEMEPATH . '/css/eddesign.css', array());
 		wp_register_style('googlefonts', 'http://fonts.googleapis.com/css?family=Coda|Lobster|Open+Sans', array());

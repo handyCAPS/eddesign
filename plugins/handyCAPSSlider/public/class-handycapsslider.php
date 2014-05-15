@@ -2,7 +2,7 @@
 /**
  * Plugin Name.
  *
- * @package   Plugin_Name
+ * @package   Handycaps_Slider
  * @author    Your Name <email@example.com>
  * @license   GPL-2.0+
  * @link      http://example.com
@@ -14,14 +14,14 @@
  * public-facing side of the WordPress site.
  *
  * If you're interested in introducing administrative or dashboard
- * functionality, then refer to `class-plugin-name-admin.php`
+ * functionality, then refer to `class-handycapsslider-admin.php`
  *
  * @TODO: Rename this class to a proper name for your plugin.
  *
- * @package Plugin_Name
+ * @package Handycaps_Slider
  * @author  Your Name <email@example.com>
  */
-class Plugin_Name {
+class Handycaps_Slider {
 
 	/**
 	 * Plugin version, used for cache-busting of style and script file references.
@@ -33,7 +33,7 @@ class Plugin_Name {
 	const VERSION = '1.0.0';
 
 	/**
-	 * @TODO - Rename "plugin-name" to the name of your plugin
+	 * @TODO - Rename "handycapsslider" to the name of your plugin
 	 *
 	 * Unique identifier for your plugin.
 	 *
@@ -46,7 +46,9 @@ class Plugin_Name {
 	 *
 	 * @var      string
 	 */
-	protected $plugin_slug = 'plugin-name';
+	const plugin_slug = 'handycapsslider';
+
+	protected $plugin_slug = 'handycapsslider';
 
 	/**
 	 * Instance of this class.
@@ -74,12 +76,6 @@ class Plugin_Name {
 		// Load public-facing style sheet and JavaScript.
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-
-		/* Define custom functionality.
-		 * Refer To http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
-		 */
-		add_action( '@TODO', array( $this, 'action_method_name' ) );
-		add_filter( '@TODO', array( $this, 'filter_method_name' ) );
 
 	}
 
@@ -228,13 +224,92 @@ class Plugin_Name {
 
 	}
 
+	public static function shortcode($atts) {
+
+		$atts = shortcode_atts( array( 'slider'=> 1 ),$atts ) ;
+
+		$query = new WP_Query(array('post_type' => 'handycapsslider'));
+
+		$posts = '';
+
+		if ($query->have_posts()) {
+			while ($query->have_posts()) {
+				$query->the_post();
+				$posts .= the_content();
+			}
+		}
+
+
+		return $posts;
+
+	}
+
+	/**
+	* Registers a new post type
+	* @uses $wp_post_types Inserts new post type object into the list
+	*
+	* @param string  Post type key, must not exceed 20 characters
+	* @param array|string  See optional args description above.
+	* @return object|WP_Error the registered post type object, or an error object
+	*/
+	private static function createCustomPostType($single, $plural) {
+
+		$labels = array(
+			"name"                => __( "$plural", self::plugin_slug ),
+			"singular_name"       => __( "$single", self::plugin_slug ),
+			"add_new"             => _x( "Add New $single", self::plugin_slug, self::plugin_slug ),
+			"add_new_item"        => __( "Add New $single", self::plugin_slug ),
+			"edit_item"           => __( "Edit $single", self::plugin_slug ),
+			"new_item"            => __( "New $single", self::plugin_slug ),
+			"view_item"           => __( "View $single", self::plugin_slug ),
+			"search_items"        => __( "Search $plural", self::plugin_slug ),
+			"not_found"           => __( "No $plural found", self::plugin_slug ),
+			"not_found_in_trash"  => __( "No $plural found in Trash", self::plugin_slug ),
+			"parent_item_colon"   => __( "Parent $single:", self::plugin_slug ),
+			"menu_name"           => __( "$plural", self::plugin_slug ),
+		);
+
+		$args = array(
+			'labels'                   => $labels,
+			'hierarchical'        => false,
+			'description'         => 'description',
+			'taxonomies'          => array(),
+			'public'              => true,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'show_in_admin_bar'   => true,
+			'menu_position'       => null,
+			'menu_icon'           => 'dashicons-format-gallery',
+			'show_in_nav_menus'   => true,
+			'publicly_queryable'  => true,
+			'exclude_from_search' => false,
+			'has_archive'         => true,
+			'query_var'           => true,
+			'can_export'          => true,
+			'rewrite'             => true,
+			'capability_type'     => 'post',
+			'supports'            => array(
+				'title', 'editor', 'author', 'thumbnail',
+				'excerpt', 'revisions', 'page-attributes', 'post-formats'
+				)
+		);
+
+		register_post_type( 'handycapsslider', $args );
+	}
+
+
+
+	public static function createSliderPostType() {
+		self::createCustomPostType('Slider', 'Sliders');
+	}
+
 	/**
 	 * Fired for each blog when the plugin is activated.
 	 *
 	 * @since    1.0.0
 	 */
 	private static function single_activate() {
-		// @TODO: Define activation functionality here
+
 	}
 
 	/**
@@ -276,33 +351,9 @@ class Plugin_Name {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin_slug . '-plugin-script', plugins_url( 'assets/js/public.js', __FILE__ ), array( 'jquery' ), self::VERSION );
+		wp_enqueue_script( $this->plugin_slug . '-plugin-script', plugins_url( 'assets/js/handyCAPSSlider.min.js', __FILE__ ), array(), self::VERSION, true );
 	}
 
-	/**
-	 * NOTE:  Actions are points in the execution of a page or process
-	 *        lifecycle that WordPress fires.
-	 *
-	 *        Actions:    http://codex.wordpress.org/Plugin_API#Actions
-	 *        Reference:  http://codex.wordpress.org/Plugin_API/Action_Reference
-	 *
-	 * @since    1.0.0
-	 */
-	public function action_method_name() {
-		// @TODO: Define your action hook callback here
-	}
 
-	/**
-	 * NOTE:  Filters are points of execution in which WordPress modifies data
-	 *        before saving it or sending it to the browser.
-	 *
-	 *        Filters: http://codex.wordpress.org/Plugin_API#Filters
-	 *        Reference:  http://codex.wordpress.org/Plugin_API/Filter_Reference
-	 *
-	 * @since    1.0.0
-	 */
-	public function filter_method_name() {
-		// @TODO: Define your filter hook callback here
-	}
 
 }

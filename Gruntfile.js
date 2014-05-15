@@ -92,6 +92,11 @@ module.exports = function(grunt) {
         expand: true,
         src: 'eddesigntheme/**/*',
         dest: '../wped/wp-content/themes'
+      },
+      plugins: {
+        expand: true,
+        src: 'plugins/handycapsslider/**/*',
+        dest: '../wped/wp-content'
       }
     },
     watch: {
@@ -108,7 +113,7 @@ module.exports = function(grunt) {
         tasks: ['sass', 'autoprefixer', 'copy']
       },
       php: {
-        files: 'eddesigntheme/**/*.php',
+        files: '**/*.php',
         tasks: ['copy']
       },
       options: {

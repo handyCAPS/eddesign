@@ -1,1 +1,32 @@
-/* This stylesheet is used to style the admin option form of the plugin. */
+
+
+.ib {
+	display: inline-block;
+}
+
+.slider-wrapper {
+	padding: 1rem;
+	background-color: #888;
+	border-radius: 3px;
+}
+
+.slide-wrap {
+	display: inline-block;
+	margin: 0.5em;
+	background-color: #CCC;
+	width: 100px;
+	height: 100px;
+	padding: 1em;
+}
+
+.slider-images {
+	text-align: center;
+}
+
+.slider-images img {
+	width: 100%;
+}
+
+.slider-caption {
+	font-size: 0.3em;
+}

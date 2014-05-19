@@ -21,9 +21,11 @@
 	<input id="upload_image" type="text" size="36" name="add_image" value="http://">
 	<input id="upload_image_button" class="button" type="button" value="Add Image">
 	<p>Enter a URL or upload an image</p>
+	<div class="slider-wrapper">
 
-	<div class="slider-images"></div>
-	<div class="slider-caption"></div>
+		<div class="slider-images ib"></div>
+		
+	</div>
 
 
 </div>

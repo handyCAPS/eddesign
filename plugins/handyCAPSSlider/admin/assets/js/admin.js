@@ -8,7 +8,7 @@
 		attachment,
 		i = 0;
 
-		var imgDiv = "<div class='prev-wrapper'><img src='' alt='' class='preview-image'><div class='slider-caption'></div></div>";
+		var imgDiv = "<div class='slide-wrap'><img src='' alt='' class='preview-image'><div class='slider-caption'></div></div>";
 
 		$('#upload_image_button').on('click', function(e){
 			e.preventDefault();

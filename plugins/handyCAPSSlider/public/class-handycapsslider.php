@@ -226,22 +226,25 @@ class Handycaps_Slider {
 
 	public static function shortcode($atts) {
 
-		$atts = shortcode_atts( array( 'slider'=> 1 ),$atts ) ;
+		include_once 'views/public.php';
+	}
 
-		$query = new WP_Query(array('post_type' => 'handycapsslider'));
+	private static function setupDB() {
+		global $wpdb;
 
-		$posts = '';
+		$pf = $wpdb->prefix;
+		$tablename = $pf . self::plugin_slug;
 
-		if ($query->have_posts()) {
-			while ($query->have_posts()) {
-				$query->the_post();
-				$posts .= the_content();
-			}
-		}
+		$sql = "CREATE TABLE IF NOT EXISTS $tablename (
+			id int NOT NULL AUTO_INCREMENT,
+			name VARCHAR(50),
+			minies ENUM ('Yes', 'No') DEFAULT 'Yes',
+			PRIMARY KEY  id (id)
+			)";
 
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-		return $posts;
-
+		dbDelta($sql);
 	}
 
 	/**
@@ -300,7 +303,7 @@ class Handycaps_Slider {
 
 
 	public static function createSliderPostType() {
-		self::createCustomPostType('Slider', 'Sliders');
+		self::createCustomPostType('Slide', 'Slides');
 	}
 
 	/**
@@ -309,7 +312,7 @@ class Handycaps_Slider {
 	 * @since    1.0.0
 	 */
 	private static function single_activate() {
-
+		self::setupDB();
 	}
 
 	/**
@@ -319,6 +322,7 @@ class Handycaps_Slider {
 	 */
 	private static function single_deactivate() {
 		// @TODO: Define deactivation functionality here
+
 	}
 
 	/**

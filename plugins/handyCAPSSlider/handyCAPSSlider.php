@@ -55,7 +55,7 @@ add_action( 'plugins_loaded', array( 'Handycaps_Slider', 'get_instance' ) );
  *----------------------------------------------------------------------------*/
 
 
-if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
+if ( is_admin() ) {
 
 	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-handycapsslider-admin.php' );
 	add_action( 'plugins_loaded', array( 'Handycaps_Slider_Admin', 'get_instance' ) );

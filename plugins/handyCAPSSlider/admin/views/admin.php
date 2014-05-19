@@ -16,7 +16,14 @@
 <div class="wrap">
 
 	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
+	<?php echo $test; ?><br>
+	<label for="upload_image"></label>
+	<input id="upload_image" type="text" size="36" name="add_image" value="http://">
+	<input id="upload_image_button" class="button" type="button" value="Add Image">
+	<p>Enter a URL or upload an image</p>
 
-	<!-- @TODO: Provide markup for your options page here. -->
+	<div class="slider-images"></div>
+	<div class="slider-caption"></div>
+
 
 </div>

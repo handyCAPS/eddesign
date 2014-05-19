@@ -10,13 +10,6 @@
  */
 
 /**
- * Plugin class. This class should ideally be used to work with the
- * administrative side of the WordPress site.
- *
- * If you're interested in introducing public-facing
- * functionality, then refer to `class-plugin-name.php`
- *
- * @TODO: Rename this class to a proper name for your plugin.
  *
  * @package Handycaps_Slider_Admin
  * @author  Your Name <email@example.com>
@@ -60,11 +53,6 @@ class Handycaps_Slider_Admin {
 
 		/*
 		 * Call $plugin_slug from public plugin class.
-		 *
-		 * @TODO:
-		 *
-		 * - Rename "Handycaps_Slider" to the name of your initial plugin class
-		 *
 		 */
 		$plugin = Handycaps_Slider::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
@@ -80,6 +68,8 @@ class Handycaps_Slider_Admin {
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
+		add_action('wp_ajax_save_slide', array($this, 'save_slide'));
+
 		/*
 		 * Define custom functionality.
 		 *
@@ -89,6 +79,11 @@ class Handycaps_Slider_Admin {
 		// add_action( '@TODO', array( $this, 'action_method_name' ) );
 		// add_filter( '@TODO', array( $this, 'filter_method_name' ) );
 
+	}
+
+	public function save_slide() {
+		echo 'Succes !!!';
+		die();
 	}
 
 	/**
@@ -160,6 +155,7 @@ class Handycaps_Slider_Admin {
 
 		$screen = get_current_screen();
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
+			wp_enqueue_media();
 			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), Handycaps_Slider::VERSION );
 		}
 
@@ -179,12 +175,6 @@ class Handycaps_Slider_Admin {
 		 *
 		 *        Administration Menus: http://codex.wordpress.org/Administration_Menus
 		 *
-		 * @TODO:
-		 *
-		 * - Change 'Page Title' to the title of your plugin admin page
-		 * - Change 'Menu Text' to the text for menu item for the plugin settings page
-		 * - Change 'manage_options' to the capability you see fit
-		 *   For reference: http://codex.wordpress.org/Roles_and_Capabilities
 		 */
 		$this->plugin_screen_hook_suffix = add_options_page(
 			__( 'HandyCAPSSlider', $this->plugin_slug ),
@@ -196,12 +186,17 @@ class Handycaps_Slider_Admin {
 
 	}
 
+	private function getUploadFields() {
+		return 'Testing cb';
+	}
+
 	/**
 	 * Render the settings page for this plugin.
 	 *
 	 * @since    1.0.0
 	 */
 	public function display_plugin_admin_page() {
+		$test = $this->plugin_screen_hook_suffix;
 		include_once( 'views/admin.php' );
 	}
 

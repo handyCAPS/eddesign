@@ -80,7 +80,7 @@ module.exports = function(grunt) {
     copy: {
       js: {
         expand: true,
-        src: ['js/**/*.js', 'bower_components/handyCAPSSlider/**/*.min.js'],
+        src: ['js/**/*.js', 'bower_components/handyCAPSSlider/**/*.min.js',],
         dest: 'eddesigntheme'
       },
       css: {
@@ -104,12 +104,12 @@ module.exports = function(grunt) {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']
       },
-      lib_test: {
-        files: '<%= jshint.lib_test.src %>',
+     js: {
+        files: ['<%= jshint.lib_test.src %>', 'plugins/**/*.js'],
         tasks: ['jshint:lib_test', 'concat', 'copy']
       },
       sass: {
-        files: 'lib/scss/**/*.scss',
+        files: ['lib/scss/**/*.scss', 'plugins/**/*.scss'],
         tasks: ['sass', 'autoprefixer', 'copy']
       },
       php: {

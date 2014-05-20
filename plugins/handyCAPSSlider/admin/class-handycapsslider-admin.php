@@ -1,4 +1,6 @@
 <?php
+
+require_once( plugin_dir_path( __DIR__ ) . 'public/class-handycapsslider.php' );
 /**
  * Plugin Name.
  *
@@ -15,6 +17,7 @@
  * @author  Your Name <email@example.com>
  */
 class Handycaps_Slider_Admin {
+
 
 	/**
 	 * Instance of this class.
@@ -33,6 +36,12 @@ class Handycaps_Slider_Admin {
 	 * @var      string
 	 */
 	protected $plugin_screen_hook_suffix = null;
+
+	private $plugin_slug = Handycaps_Slider::plugin_slug;
+
+	private $slideTable;
+
+	private $sliderTable;
 
 	/**
 	 * Initialize the plugin by loading admin scripts & styles and adding a
@@ -70,6 +79,10 @@ class Handycaps_Slider_Admin {
 
 		add_action('wp_ajax_save_slide', array($this, 'save_slide'));
 
+		$this->setSlideTable();
+
+		$this->setSliderTable();
+
 		/*
 		 * Define custom functionality.
 		 *
@@ -81,9 +94,87 @@ class Handycaps_Slider_Admin {
 
 	}
 
+	private function setSlideTable() {
+		global $wpdb;
+
+		$this->slideTable = $wpdb->prefix . $this->plugin_slug . '_slides';
+	}
+
+	private function setSliderTable() {
+		global $wpdb;
+
+		$this->sliderTable = $wpdb->prefix . $this->plugin_slug . '_sliders';
+	}
+
+	private function dbDelta($sql) {
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+
+		dbDelta($sql);
+	}
+
+	private function add_slide($slider, $slide) {
+		global $wpdb;
+
+		$pf = $wpdb->prefix;
+
+		$tablename = $this->slideTable;
+
+		if ($wpdb->insert($tablename, array(
+					'slide_id' => $slide,
+					'slider_id' => $slider
+					), array('%d','%d'))) {
+			$slide_id = $wpdb->insert_id;
+			return true;
+		}
+
+		return false;
+
+	}
+
 	public function save_slide() {
-		echo 'Succes !!!';
+		if ($this->add_slide($_POST['slider_id'], $_POST['att_id'])) {
+		echo print_r($_POST);
+		} else {
+			echo 'Failure';
+		}
 		die();
+	}
+
+	private function get_slider_info() {
+		global $wpdb;
+
+		$tablename = $this->sliderTable;
+		$slideTable = $this->slideTable;
+
+		$sql = "SELECT {$tablename}.id, {$tablename}.name
+		FROM $tablename
+		";
+
+		return $wpdb->get_results($sql);
+	}
+
+	private function get_slide_info($slider) {
+		global $wpdb;
+
+		$slideTable = $this->slideTable;
+		$posts = $wpdb->posts;
+
+		$sql = "SELECT {$posts}.guid AS imgLink, {$posts}.post_excerpt AS imgCaption FROM $posts
+			JOIN $slideTable ON {$slideTable}.slider_id = $slider
+			WHERE {$posts}.ID = {$slideTable}.slide_id
+		";
+
+		return $wpdb->get_results($sql);
+	}
+
+	private function get_slides($slider) {
+		if ($result = $this->get_slide_info($slider)) {
+			foreach ($result as $assoc) {
+				$imgLink = $assoc->imgLink;
+				$imgCaption = $assoc->imgCaption;
+				include 'views/slides.php';
+			}
+		}
 	}
 
 	/**
@@ -186,18 +277,34 @@ class Handycaps_Slider_Admin {
 
 	}
 
-	private function getUploadFields() {
-		return 'Testing cb';
-	}
-
 	/**
 	 * Render the settings page for this plugin.
 	 *
 	 * @since    1.0.0
 	 */
 	public function display_plugin_admin_page() {
-		$test = $this->plugin_screen_hook_suffix;
-		include_once( 'views/admin.php' );
+		global $wpdb;
+
+		if ($result = $this->get_slider_info()) {
+
+			$sliderA = array();
+
+			foreach ($result as $assoc) {
+
+				$sliderId = $assoc->id;
+				$sliderName = ucfirst($assoc->name);
+
+				if (!in_array($sliderId, $sliderA)) {
+					include( 'views/admin.php' );
+					array_push($sliderA, $sliderId);
+				}
+			}
+
+
+
+		} else {
+			echo $wpdb->last_query;
+		}
 	}
 
 	/**

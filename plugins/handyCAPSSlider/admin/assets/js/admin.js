@@ -6,12 +6,14 @@
 
 		var handyCAPSUploader,
 		attachment,
+		clickedSlider,
 		i = 0;
 
 		var imgDiv = "<div class='slide-wrap'><img src='' alt='' class='preview-image'><div class='slider-caption'></div></div>";
 
-		$('#upload_image_button').on('click', function(e){
+		$('.add-media').on('click', function(e){
 			e.preventDefault();
+			clickedSlider = this.id;
 			handyCAPSUploader = wp.media.frames.file_frame = wp.media({
 				title: 'Choose media',
 				button: {
@@ -20,24 +22,19 @@
 				multiple: true
 			});
 
-			handyCAPSUploader.on('select', function() {
+			handyCAPSUploader.on('select', function(event) {
 				attachment = handyCAPSUploader.state().get('selection').first().toJSON();
 
-				console.log(attachment);
+				console.log($('#' + clickedSlider).siblings());
 
-				$('.slider-images').append(imgDiv);
-
-				$('#upload_image').val(attachment.url);
-
-				$('.preview-image')[i].src = attachment.url;
-
-				$('.slider-caption')[i].innerHTML = attachment.caption;
+				var sliderId = $('#' + clickedSlider).siblings('.sliderId').val();
 
 				i++;
 
 				var data = {
 					action: 'save_slide',
-					imgurl: attachment.url
+					att_id: attachment.id,
+					slider_id: sliderId
 				};
 
 				$.post(ajaxurl, data, function(response) {

@@ -13,19 +13,13 @@
  */
 ?>
 
-<div class="wrap">
+<div class="outerWrap">
 
-	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
-	<?php echo $test; ?><br>
-	<label for="upload_image"></label>
-	<input id="upload_image" type="text" size="36" name="add_image" value="http://">
-	<input id="upload_image_button" class="button" type="button" value="Add Image">
-	<p>Enter a URL or upload an image</p>
-	<div class="slider-wrapper">
+	<h2><?php echo $sliderName; ?></h2>
+	<input id="upload_button_slider<?php echo $sliderId; ?>" class="button add-media" type="button" value="Add Image">
 
-		<div class="slider-images ib"></div>
-		
-	</div>
+	<input type="hidden" name='sliderId' class='sliderId' value="<?php echo $sliderId; ?>"><br>
+	<?php $this->get_slides($sliderId); ?>
 
 
 </div>

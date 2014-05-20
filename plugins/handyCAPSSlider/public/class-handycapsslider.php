@@ -235,16 +235,25 @@ class Handycaps_Slider {
 		$pf = $wpdb->prefix;
 		$tablename = $pf . self::plugin_slug;
 
-		$sql = "CREATE TABLE IF NOT EXISTS $tablename (
+		$sql = "CREATE TABLE IF NOT EXISTS {$tablename}_sliders (
 			id int NOT NULL AUTO_INCREMENT,
 			name VARCHAR(50),
 			minies ENUM ('Yes', 'No') DEFAULT 'Yes',
 			PRIMARY KEY  id (id)
 			)";
 
+		$sql2 = "CREATE TABLE IF NOT EXISTS {$tablename}_slides (
+			id int not null AUTO_INCREMENT,
+			slide_id int NOT NULL,
+			slider_id int NOT NULL,
+			PRIMARY KEY  id (id),
+			FOREIGN KEY  (slider_id) REFERENCES {$tablename}_sliders (id) ON DELETE CASCADE
+			)";
+
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
 		dbDelta($sql);
+		dbDelta($sql2);
 	}
 
 	/**

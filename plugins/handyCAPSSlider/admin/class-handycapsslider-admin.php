@@ -37,7 +37,7 @@ class Handycaps_Slider_Admin {
 	 */
 	protected $plugin_screen_hook_suffix = null;
 
-	private $plugin_slug = Handycaps_Slider::plugin_slug;
+	private $plugin_slug;
 
 	private $slideTable;
 
@@ -133,7 +133,7 @@ class Handycaps_Slider_Admin {
 
 	public function save_slide() {
 		if ($this->add_slide($_POST['slider_id'], $_POST['att_id'])) {
-		echo print_r($_POST);
+		echo $this->get_slides($_POST['slider_id']);
 		} else {
 			echo 'Failure';
 		}
@@ -171,7 +171,7 @@ class Handycaps_Slider_Admin {
 		if ($result = $this->get_slide_info($slider)) {
 			foreach ($result as $assoc) {
 				$imgLink = $assoc->imgLink;
-				$imgCaption = $assoc->imgCaption;
+				$imgCaption = $assoc->imgCaption !== '' ? $assoc->imgCaption : 'No caption';
 				include 'views/slides.php';
 			}
 		}
@@ -283,28 +283,24 @@ class Handycaps_Slider_Admin {
 	 * @since    1.0.0
 	 */
 	public function display_plugin_admin_page() {
+		echo "<h2>HandyCAPSSlider</h2>";
 		global $wpdb;
 
-		if ($result = $this->get_slider_info()) {
+		$result = $this->get_slider_info(); 
 
-			$sliderA = array();
+		$sliderA = array();
 
-			foreach ($result as $assoc) {
+		foreach ($result as $assoc) {
 
-				$sliderId = $assoc->id;
-				$sliderName = ucfirst($assoc->name);
+			$sliderId = $assoc->id;
+			$sliderName = ucfirst($assoc->name);
 
-				if (!in_array($sliderId, $sliderA)) {
-					include( 'views/admin.php' );
-					array_push($sliderA, $sliderId);
-				}
+			if (!in_array($sliderId, $sliderA)) {
+				include( 'views/admin.php' );
+				array_push($sliderA, $sliderId);
 			}
-
-
-
-		} else {
-			echo $wpdb->last_query;
 		}
+		include 'views/sliders.php';
 	}
 
 	/**

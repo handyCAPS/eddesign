@@ -39,6 +39,7 @@
 
 				$.post(ajaxurl, data, function(response) {
 					console.log(response);
+					$('.slider-wrapper').html(response);
 				});
 
 			});

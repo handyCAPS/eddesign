@@ -19,7 +19,9 @@
 	<input id="upload_button_slider<?php echo $sliderId; ?>" class="button add-media" type="button" value="Add Image">
 
 	<input type="hidden" name='sliderId' class='sliderId' value="<?php echo $sliderId; ?>"><br>
+	<div class="slider-wrapper">
 	<?php $this->get_slides($sliderId); ?>
+	</div>
 
 
 </div>

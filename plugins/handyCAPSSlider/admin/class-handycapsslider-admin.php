@@ -79,6 +79,8 @@ class Handycaps_Slider_Admin {
 
 		add_action('wp_ajax_save_slide', array($this, 'save_slide'));
 
+		add_action('wp_ajax_delete_slide', array($this, 'delete_slide'));
+
 		$this->setSlideTable();
 
 		$this->setSliderTable();
@@ -140,6 +142,11 @@ class Handycaps_Slider_Admin {
 		die();
 	}
 
+	public function delete_slide() {
+		echo print_r($_POST);
+		die();
+	}
+
 	private function get_slider_info() {
 		global $wpdb;
 
@@ -159,7 +166,7 @@ class Handycaps_Slider_Admin {
 		$slideTable = $this->slideTable;
 		$posts = $wpdb->posts;
 
-		$sql = "SELECT {$posts}.guid AS imgLink, {$posts}.post_excerpt AS imgCaption FROM $posts
+		$sql = "SELECT {$posts}.guid AS imgLink, {$posts}.post_excerpt AS imgCaption, {$slideTable}.id AS slideId FROM $posts
 			JOIN $slideTable ON {$slideTable}.slider_id = $slider
 			WHERE {$posts}.ID = {$slideTable}.slide_id
 		";
@@ -170,6 +177,7 @@ class Handycaps_Slider_Admin {
 	private function get_slides($slider) {
 		if ($result = $this->get_slide_info($slider)) {
 			foreach ($result as $assoc) {
+				$slideId = $assoc->slideId;
 				$imgLink = $assoc->imgLink;
 				$imgCaption = $assoc->imgCaption !== '' ? $assoc->imgCaption : 'No caption';
 				include 'views/slides.php';
@@ -286,7 +294,7 @@ class Handycaps_Slider_Admin {
 		echo "<h2>HandyCAPSSlider</h2>";
 		global $wpdb;
 
-		$result = $this->get_slider_info(); 
+		$result = $this->get_slider_info();
 
 		$sliderA = array();
 

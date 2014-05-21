@@ -10,8 +10,8 @@ h2 {
 
 .slider-wrapper {
 	display: inline-block;
-	max-width: 600px;
-	padding: 1rem;
+	max-width: 580px;
+	padding: 16px;
 	background-color: #888;
 	border-radius: 3px;
 	margin: 12px;
@@ -19,12 +19,19 @@ h2 {
 }
 .slider-images {
 	display: inline-block;
-	margin: 0.5em;
+	position: relative;
+	margin: 8px;
 	background-color: #CCC;
 	width: 100px;
 	height: 100px;
 	padding: 1em;
 	text-align: center;
+	vertical-align: top;
+}
+
+.slider-images:hover .delete, .slider-images:focus .delete {
+	display: block;
+	opacity: 1;
 }
 
 .slider-images img {
@@ -32,5 +39,45 @@ h2 {
 }
 
 .slider-caption {
-	font-size: 0.6em;
+	font-size: 12px;
+}
+
+.delete {
+	font-size: 0px;
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background-color: #F80808;
+	top: -8px;
+	right: -8px;
+	cursor: pointer;
+
+	display: none;
+}
+
+.delete:before, .delete:after {
+	display: inline-block;
+	content: '';
+	background-color: #FFF;
+	position: absolute;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.delete:before {
+	width: 2px;
+	height: 12px;
+	left: 7px;
+	top: 2px;
+}
+
+.delete:after {
+	height: 2px;
+	width: 12px;
+	left: 2px;
+	top: 7px;
 }

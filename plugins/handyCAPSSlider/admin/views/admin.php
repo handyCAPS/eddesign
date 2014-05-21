@@ -13,12 +13,11 @@
  */
 ?>
 
-<div class="outerWrap">
+<div data-sliderid="<?php echo $sliderId; ?>" class="outerWrap handycapsslider slider<?php echo $sliderId; ?>">
 
 	<h2><?php echo $sliderName; ?></h2>
-	<input id="upload_button_slider<?php echo $sliderId; ?>" class="button add-media" type="button" value="Add Image">
+	<input id="upload_button_slider<?php echo $sliderId; ?>" class="button add-media" type="button" value="Add Image"><br>
 
-	<input type="hidden" name='sliderId' class='sliderId' value="<?php echo $sliderId; ?>"><br>
 	<div class="slider-wrapper">
 	<?php $this->get_slides($sliderId); ?>
 	</div>

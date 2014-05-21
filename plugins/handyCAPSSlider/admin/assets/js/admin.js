@@ -46,22 +46,31 @@
 			handyCAPSUploader.open();
 		});
 
-		$('.delete').on('click', function(e) {
+		function listenForDelete() {
 
-			var slideId = e.currentTarget.attributes.getNamedItem('data-slideid').value,
-			sliderId = $(e).parents('.handycapsslider').attr('class');
+			$('.delete').on('click', function(e) {
 
-			console.log(sliderId);
-			var data = {
-				action: 'delete_slide',
-				slideId: slideId
-			};
+				var slideId = e.currentTarget.attributes.getNamedItem('data-slideid').value,
+				sliderId = $(e.currentTarget).parents('.handycapsslider').attr('data-sliderid');
 
-			$.post(ajaxurl, data, function(response) {
-				console.log(response);
-				$('.slider' + sliderId + ' .slider-wrapper').html(response);
+				console.log(sliderId, slideId);
+				var data = {
+					action: 'delete_slide',
+					slideId: slideId,
+					sliderId: sliderId
+				};
+
+				$.post(ajaxurl, data, function(response) {
+					console.log(response);
+					$('.slider' + sliderId + ' .slider-wrapper').html(response);
+					listenForDelete();
+				});
 			});
-		});
+		}
+
+		listenForDelete();
+
+		
 
 
 	});

@@ -117,8 +117,6 @@ class Handycaps_Slider_Admin {
 	private function add_slide($slider, $slide) {
 		global $wpdb;
 
-		$pf = $wpdb->prefix;
-
 		$tablename = $this->slideTable;
 
 		if ($wpdb->insert($tablename, array(
@@ -133,6 +131,18 @@ class Handycaps_Slider_Admin {
 
 	}
 
+	private function remove_slide($id) {
+		global $wpdb;
+
+		$tablename = $this->slideTable;
+
+		if ($wpdb->delete($tablename, array('id' => $id), array('%d'))) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public function save_slide() {
 		if ($this->add_slide($_POST['slider_id'], $_POST['att_id'])) {
 		echo $this->get_slides($_POST['slider_id']);
@@ -143,7 +153,15 @@ class Handycaps_Slider_Admin {
 	}
 
 	public function delete_slide() {
-		echo print_r($_POST);
+		global $wpdb;
+		$id = $_POST['slideId'];
+		$slider = $_POST['sliderId'];
+
+		if ($this->remove_slide($id)) {
+			echo $this->get_slides($slider);
+		} else {
+			echo $wpdb->last_query;
+		}
 		die();
 	}
 

@@ -45,7 +45,6 @@ require_once( plugin_dir_path( __FILE__ ) . 'public/class-handycapsslider.php' )
 register_activation_hook( __FILE__, array( 'Handycaps_Slider', 'activate' ) );
 register_deactivation_hook( __FILE__, array( 'Handycaps_Slider', 'deactivate' ) );
 
-add_action('init', array('Handycaps_Slider', 'createSliderPostType'));
 // Add a shortcode
 add_shortcode( 'handycapsslider', array( 'Handycaps_Slider', 'shortcode' ) );
 add_action( 'plugins_loaded', array( 'Handycaps_Slider', 'get_instance' ) );

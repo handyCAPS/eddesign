@@ -132,6 +132,7 @@ class Handycaps_Slider_Admin {
 	}
 
 	private function remove_slide($id) {
+
 		global $wpdb;
 
 		$tablename = $this->slideTable;
@@ -144,24 +145,39 @@ class Handycaps_Slider_Admin {
 	}
 
 	public function save_slide() {
+
+		check_ajax_referer('add-slider-image-777j0K', 'addNonce');
+
 		if ($this->add_slide($_POST['slider_id'], $_POST['att_id'])) {
-		echo $this->get_slides($_POST['slider_id']);
+
+			echo $this->get_slides($_POST['slider_id']);
+
 		} else {
 			echo 'Failure';
 		}
+
 		die();
 	}
 
 	public function delete_slide() {
+		check_ajax_referer('delete-slider-image-055HbbM0', 'deleteNonce');
+
 		global $wpdb;
+
 		$id = $_POST['slideId'];
 		$slider = $_POST['sliderId'];
 
 		if ($this->remove_slide($id)) {
+
 			echo $this->get_slides($slider);
+
 		} else {
-			echo $wpdb->last_query;
+			if (WP_DEBUG) {
+				echo $wpdb->last_query;
+			}
+
 		}
+
 		die();
 	}
 
@@ -274,6 +290,7 @@ class Handycaps_Slider_Admin {
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
 			wp_enqueue_media();
 			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), Handycaps_Slider::VERSION );
+			wp_enqueue_style('jquery-ui');
 		}
 
 	}

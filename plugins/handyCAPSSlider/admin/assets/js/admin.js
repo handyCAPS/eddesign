@@ -3,10 +3,29 @@
 
 	$(function () {
 
+		$('.slider-wrapper').each(function() {
+
+			$('[data-sliderid="' + $(this).attr('data-sliderid') + '"]').sortable({
+			change: function() {
+
+				var sortedA = $(this).sortable('toArray', {
+					attribute: 'data-slideid'
+				}).map(function(index, value) {
+					return [index,value];
+				});
+
+				var fullArray = sortedA;
+
+				console.log(sortedA);
+			}
+		});
+		});
+
+
+
 
 		var handyCAPSUploader,
 		attachment,
-		clickedSlider,
 		sliderId;
 
 		var imgDiv = "<div class='slide-wrap'><img src='' alt='' class='preview-image'><div class='slider-caption'></div></div>";
@@ -15,8 +34,9 @@
 
 			e.preventDefault();
 
-			clickedSlider = this.id;
-			sliderId = parseInt(clickedSlider.replace(/[^0-9]/g, ''), 10);
+			var addNonce = $(e.currentTarget).parent('.handycapsslider').attr('data-wpnonce');
+			var sliderId = $(e.currentTarget).parent('.handycapsslider').attr('data-sliderid');
+
 
 			handyCAPSUploader = wp.media.frames.file_frame = wp.media({
 				title: 'Choose media',
@@ -33,12 +53,15 @@
 				var data = {
 					action: 'save_slide',
 					att_id: attachment.id,
+					addNonce: addNonce,
 					slider_id: sliderId
 				};
 
 				$.post(ajaxurl, data, function(response) {
 
-					$('.slider' + sliderId + ' .slider-wrapper').html(response);
+					$('[data-sliderid="' + sliderId + '"] .slider-wrapper').html(response);
+
+					listenForDelete();
 				});
 
 			});
@@ -50,19 +73,19 @@
 
 			$('.delete').on('click', function(e) {
 
-				var slideId = e.currentTarget.attributes.getNamedItem('data-slideid').value,
+				var slideId = $(e.currentTarget).attr('data-slideid'),
+				deleteNonce = $(e.currentTarget).attr('data-wpnonce'),
 				sliderId = $(e.currentTarget).parents('.handycapsslider').attr('data-sliderid');
 
-				console.log(sliderId, slideId);
 				var data = {
 					action: 'delete_slide',
 					slideId: slideId,
+					deleteNonce: deleteNonce,
 					sliderId: sliderId
 				};
 
 				$.post(ajaxurl, data, function(response) {
-					console.log(response);
-					$('.slider' + sliderId + ' .slider-wrapper').html(response);
+					$('[data-sliderid="' + sliderId + '"] .slider-wrapper').html(response);
 					listenForDelete();
 				});
 			});
@@ -70,7 +93,7 @@
 
 		listenForDelete();
 
-		
+
 
 
 	});

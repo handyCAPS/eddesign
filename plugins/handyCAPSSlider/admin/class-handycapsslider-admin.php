@@ -189,7 +189,7 @@ class Handycaps_Slider_Admin {
 	private function splitSliderValues() {
 		foreach ($this->sliderVars as $option => $value) {
 			$this->sliderOptions[] = "`" . $option . "`" ;
-			$this->sliderValues[] = "'" . $value . "'" ;
+			$this->sliderValues[] = "'" . sanitize_text_field($value) . "'" ;
 		}
 	}
 
@@ -249,7 +249,7 @@ class Handycaps_Slider_Admin {
 
 		$this->insertSlider();
 
-		echo print_r($this->sliderVars);
+		echo $this->display_plugin_admin_page();
 
 
 		die();

@@ -44,6 +44,7 @@ h2 {
 
 .slider-caption {
 	font-size: 12px;
+	position: absolute;
 }
 
 .delete {
@@ -86,8 +87,13 @@ h2 {
 	top: 7px;
 }
 
-.addslider {
-	display: inline-block;
+.addslider-button {
+	clear: both;
+}
+
+.addsliderwrapper {
+	width: 420px!important;
+	background-color: #FFF;
 }
 
 .addslider fieldset {
@@ -96,7 +102,6 @@ h2 {
 
 .addslider legend {
 	font-size: 24px;
-	text-align: center;
 }
 
 .addslider label {

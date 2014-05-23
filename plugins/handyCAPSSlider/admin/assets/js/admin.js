@@ -3,6 +3,36 @@
 
 	$(function () {
 
+		var dialog = $('.addsliderwrapper').dialog({
+			modal: true,
+			autoOpen: false
+		});
+
+		$('.addslider-button').on('click', function() {
+
+			$('.addsliderwrapper').dialog('open');
+
+			$('.addsliderwrapper').dialog('option','title', 'New Slider');
+		});
+
+		$('#submit-sliderform').on('click', function(e) {
+
+			e.preventDefault();
+
+			var data = {
+				action: 'new_slider',
+				newSliderNonce: $(_wpnonce).val(),
+				formdata: $('#addslider-form').serialize()
+			}
+
+			$.post(ajaxurl, data, function(response) {
+				console.log(response);
+				$('.addsliderwrapper').dialog('close');
+			});
+
+			// console.log();
+		});
+
 		$('.slider-wrapper').each(function() {
 
 			$('[data-sliderid="' + $(this).attr('data-sliderid') + '"]').sortable({

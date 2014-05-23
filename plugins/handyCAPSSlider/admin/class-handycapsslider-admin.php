@@ -43,6 +43,12 @@ class Handycaps_Slider_Admin {
 
 	private $sliderTable;
 
+	private $sliderVars = array();
+
+	private $sliderOptions = array();
+
+	private $sliderValues = array();
+
 	/**
 	 * Initialize the plugin by loading admin scripts & styles and adding a
 	 * settings page and menu.
@@ -77,6 +83,8 @@ class Handycaps_Slider_Admin {
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
+		add_action('wp_ajax_new_slider', array($this, 'new_slider'));
+
 		add_action('wp_ajax_save_slide', array($this, 'save_slide'));
 
 		add_action('wp_ajax_delete_slide', array($this, 'delete_slide'));
@@ -84,6 +92,7 @@ class Handycaps_Slider_Admin {
 		$this->setSlideTable();
 
 		$this->setSliderTable();
+
 
 		/*
 		 * Define custom functionality.
@@ -94,6 +103,36 @@ class Handycaps_Slider_Admin {
 		// add_action( '@TODO', array( $this, 'action_method_name' ) );
 		// add_filter( '@TODO', array( $this, 'filter_method_name' ) );
 
+	}
+
+	public function flatten($array) {
+
+		$flatArray = array();
+
+		foreach ($array as $key => $value) {
+			if (is_array($value)) {
+				$flatArray = array_merge($flatArray, $this->flatten($value));
+			} else {
+				$flatArray[$key] = $value;
+			}
+		}
+
+		return $flatArray;
+	}
+
+	public function checkIntval($val) {
+
+		if (is_array($val)) {
+			foreach ($val as $int) {
+				return $this->checkIntval($int);
+			}
+		}
+
+		if ($val !== 0) {
+			return true;
+		}
+
+		return false;
 	}
 
 	private function setSlideTable() {
@@ -108,13 +147,69 @@ class Handycaps_Slider_Admin {
 		$this->sliderTable = $wpdb->prefix . $this->plugin_slug . '_sliders';
 	}
 
-	private function dbDelta($sql) {
-		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+	private function setSliderValues($formA) {
 
-		dbDelta($sql);
+		$setBools = array();
+
+		$sliderBooleans = array(
+				'stopOnHover',
+				'minis',
+				'highlightMinis',
+				'bullets'
+			);
+
+		$nonceKeys = array(
+				'_wpnonce',
+				'_wp_http_referer'
+			);
+
+		foreach ($formA as $key => $sliderVar) {
+			if (in_array($key, $sliderBooleans)) {
+				array_push($setBools, $key);
+				unset($formA[$key]);
+			}
+			if (in_array($key, $nonceKeys)) {
+				unset($formA[$key]);
+			}
+		}
+
+		$notSet = array_diff($sliderBooleans, $setBools);
+
+		$addFalse = function($val) {
+			return array($val => 0);
+		};
+
+		$falseA = array_map($addFalse, $notSet);
+
+
+		$this->sliderVars = array_filter($this->flatten(array_merge($formA, $falseA)), 'strlen');
+
 	}
 
-	private function add_slide($slider, $slide) {
+	private function splitSliderValues() {
+		foreach ($this->sliderVars as $option => $value) {
+			$this->sliderOptions[] = "`" . $option . "`" ;
+			$this->sliderValues[] = "'" . $value . "'" ;
+		}
+	}
+
+	private function insertSlider() {
+
+		global $wpdb;
+
+		$this->splitSliderValues();
+
+		$tablename = $this->sliderTable;
+
+		$options = implode(',', $this->sliderOptions);
+		$values = implode(',', $this->sliderValues);
+
+		$sql = "INSERT INTO $tablename ($options) VALUES ($values)";
+
+		$wpdb->query($sql);
+	}
+
+	private function addSlide($slider, $slide) {
 		global $wpdb;
 
 		$tablename = $this->slideTable;
@@ -131,7 +226,7 @@ class Handycaps_Slider_Admin {
 
 	}
 
-	private function remove_slide($id) {
+	private function removeSlide($id) {
 
 		global $wpdb;
 
@@ -144,13 +239,34 @@ class Handycaps_Slider_Admin {
 		return false;
 	}
 
+	public function new_slider() {
+
+		check_ajax_referer('create-new-slider-form', 'newSliderNonce' );
+
+		parse_str($_POST['formdata'], $postA);
+
+		$this->setSliderValues($postA);
+
+		$this->insertSlider();
+
+		echo print_r($this->sliderVars);
+
+
+		die();
+	}
+
 	public function save_slide() {
 
 		check_ajax_referer('add-slider-image-777j0K', 'addNonce');
 
-		if ($this->add_slide($_POST['slider_id'], $_POST['att_id'])) {
 
-			echo $this->get_slides($_POST['slider_id']);
+		if (!$this->checkIntval(array(intval($_POST['slider_id']), intval($_POST['att_id'])))) {
+			die();
+		}
+
+		if ($this->addSlide(intval($_POST['slider_id']), intval($_POST['att_id']))) {
+
+			echo $this->get_slides(intval($_POST['slider_id']));
 
 		} else {
 			echo 'Failure';
@@ -167,13 +283,13 @@ class Handycaps_Slider_Admin {
 		$id = $_POST['slideId'];
 		$slider = $_POST['sliderId'];
 
-		if ($this->remove_slide($id)) {
+		if ($this->removeSlide($id)) {
 
 			echo $this->get_slides($slider);
 
 		} else {
 			if (WP_DEBUG) {
-				echo $wpdb->last_query;
+				echo 'Query failed: ' . $wpdb->last_query;
 			}
 
 		}
@@ -213,7 +329,7 @@ class Handycaps_Slider_Admin {
 			foreach ($result as $assoc) {
 				$slideId = $assoc->slideId;
 				$imgLink = $assoc->imgLink;
-				$imgCaption = $assoc->imgCaption !== '' ? $assoc->imgCaption : 'No caption';
+				$imgCaption = $assoc->imgCaption;
 				include 'views/slides.php';
 			}
 		}
@@ -290,7 +406,11 @@ class Handycaps_Slider_Admin {
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
 			wp_enqueue_media();
 			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), Handycaps_Slider::VERSION );
-			wp_enqueue_style('jquery-ui');
+			wp_enqueue_script('jquery-ui');
+			wp_enqueue_script('jquery-ui-dialog' );
+
+			wp_enqueue_style('wp-jquery-ui');
+			wp_enqueue_style('wp-jquery-ui-dialog');
 		}
 
 	}
@@ -326,24 +446,14 @@ class Handycaps_Slider_Admin {
 	 * @since    1.0.0
 	 */
 	public function display_plugin_admin_page() {
-		echo "<h2>HandyCAPSSlider</h2>";
-		global $wpdb;
 
 		$result = $this->get_slider_info();
 
 		$sliderA = array();
 
-		foreach ($result as $assoc) {
 
-			$sliderId = $assoc->id;
-			$sliderName = ucfirst($assoc->name);
-
-			if (!in_array($sliderId, $sliderA)) {
-				include( 'views/admin.php' );
-				array_push($sliderA, $sliderId);
-			}
-		}
-		include 'views/sliders.php';
+		include 'views/admin.php';
+		include 'views/addslider-form.php';
 	}
 
 	/**

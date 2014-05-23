@@ -238,7 +238,29 @@ class Handycaps_Slider {
 		$sql = "CREATE TABLE IF NOT EXISTS {$tablename}_sliders (
 			id int NOT NULL AUTO_INCREMENT,
 			name VARCHAR(50),
-			minies ENUM ('Yes', 'No') DEFAULT 'Yes',
+			item varchar(50),
+			caption varchar(50),
+			stopOnHover tinyint(1),
+			minis tinyint(1),
+			highlightMinis tinyint(1),
+			slideDur int,
+			animationDur int,
+			timingFunc varchar(30),
+			animType varchar(30),
+			itemWidth varchar(30),
+			itemHeight varchar(30),
+			captionHeight varchar(30),
+			capMinHeight varchar(30),
+			captionColor varchar(30),
+			capTextColor varchar(30),
+			capFontSize varchar(30),
+			bullets tinyint(1),
+			bulletSize varchar(30),
+			bulletColor varchar(30),
+			bulletBright int,
+			bulAltColor varchar(30),
+			chevrons tinyint(1),
+
 			PRIMARY KEY  id (id)
 			)";
 
@@ -255,65 +277,6 @@ class Handycaps_Slider {
 
 		dbDelta($sql);
 		dbDelta($sql2);
-	}
-
-	/**
-	* Registers a new post type
-	* @uses $wp_post_types Inserts new post type object into the list
-	*
-	* @param string  Post type key, must not exceed 20 characters
-	* @param array|string  See optional args description above.
-	* @return object|WP_Error the registered post type object, or an error object
-	*/
-	private static function createCustomPostType($single, $plural) {
-
-		$labels = array(
-			"name"                => __( "$plural", self::plugin_slug ),
-			"singular_name"       => __( "$single", self::plugin_slug ),
-			"add_new"             => _x( "Add New $single", self::plugin_slug, self::plugin_slug ),
-			"add_new_item"        => __( "Add New $single", self::plugin_slug ),
-			"edit_item"           => __( "Edit $single", self::plugin_slug ),
-			"new_item"            => __( "New $single", self::plugin_slug ),
-			"view_item"           => __( "View $single", self::plugin_slug ),
-			"search_items"        => __( "Search $plural", self::plugin_slug ),
-			"not_found"           => __( "No $plural found", self::plugin_slug ),
-			"not_found_in_trash"  => __( "No $plural found in Trash", self::plugin_slug ),
-			"parent_item_colon"   => __( "Parent $single:", self::plugin_slug ),
-			"menu_name"           => __( "$plural", self::plugin_slug ),
-		);
-
-		$args = array(
-			'labels'                   => $labels,
-			'hierarchical'        => false,
-			'description'         => 'description',
-			'taxonomies'          => array(),
-			'public'              => true,
-			'show_ui'             => true,
-			'show_in_menu'        => true,
-			'show_in_admin_bar'   => true,
-			'menu_position'       => null,
-			'menu_icon'           => 'dashicons-format-gallery',
-			'show_in_nav_menus'   => true,
-			'publicly_queryable'  => true,
-			'exclude_from_search' => false,
-			'has_archive'         => true,
-			'query_var'           => true,
-			'can_export'          => true,
-			'rewrite'             => true,
-			'capability_type'     => 'post',
-			'supports'            => array(
-				'title', 'editor', 'author', 'thumbnail',
-				'excerpt', 'revisions', 'page-attributes', 'post-formats'
-				)
-		);
-
-		register_post_type( 'handycapsslider', $args );
-	}
-
-
-
-	public static function createSliderPostType() {
-		self::createCustomPostType('Slide', 'Slides');
 	}
 
 	/**

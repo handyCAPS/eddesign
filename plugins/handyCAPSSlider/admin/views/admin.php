@@ -12,15 +12,18 @@
  * @copyright 2014 Your Name or Company Name
  */
 ?>
+<h2>HandyCAPSSlider</h2>
+<div class='button addslider-button'>Add Slider</div><br>
 
-<div data-sliderid="<?php echo $sliderId; ?>" data-wpnonce="<?php echo wp_create_nonce('add-slider-image-777j0K'); ?>" class="outerWrap handycapsslider">
+<?php
+foreach ($result as $assoc) {
 
-	<h2><?php echo $sliderName; ?></h2>
-	<input id="upload_button_slider<?php echo $sliderId; ?>" class="button add-media" type="button" value="Add Image"><br>
+	$sliderId = $assoc->id;
+	$sliderName = ucfirst($assoc->name);
 
-	<div class="slider-wrapper" data-sliderid="<?php echo $sliderId; ?>">
-	<?php $this->get_slides($sliderId); ?>
-	</div>
-
-
-</div>
+	if (!in_array($sliderId, $sliderA)) {
+		include( 'sliders.php' );
+		array_push($sliderA, $sliderId);
+	}
+}
+?>

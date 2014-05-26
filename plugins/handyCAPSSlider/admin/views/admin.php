@@ -12,7 +12,7 @@
  * @copyright 2014 Your Name or Company Name
  */
 ?>
-<h2>HandyCAPSSlider</h2>
+<h2>HandyCAPSSliders</h2>
 <div class='button addslider-button'>Add Slider</div><br>
 
 <?php

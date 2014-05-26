@@ -44,14 +44,16 @@ module.exports = function(grunt) {
         jquery: true,
         globals: {
           jQuery: true,
-          require: true
+          require: true,
+          ajaxurl: true,
+          wp: true
         }
       },
       gruntfile: {
         src: 'Gruntfile.js'
       },
       lib_test: {
-        src: ['lib/**/*.js', 'test/**/*.js']
+        src: ['lib/**/*.js', 'plugins/handycapsslider/admin/**/*.js']
       }
     },
     sass: {

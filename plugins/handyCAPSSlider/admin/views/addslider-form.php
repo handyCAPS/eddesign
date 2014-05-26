@@ -71,7 +71,7 @@
 			<input type="text" name="bulAltColor" id="bulAltColor" placeholder="#657273">
 			<br>
 
-			<input class="button right" id="submit-sliderform" type="submit" value="<?php _e('Save', 'handycapsslider'); ?>">
+			<input class="button right submit-sliderform" id="submit-sliderform" type="submit" value="<?php _e('Save', 'handycapsslider'); ?>">
 		</fieldset>
 	</form>
 </div>

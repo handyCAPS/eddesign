@@ -32,6 +32,8 @@ class Handycaps_Slider {
 	 */
 	const VERSION = '1.0.0';
 
+	private static $slider;
+
 	/**
 	 * @TODO - Rename "handycapsslider" to the name of your plugin
 	 *
@@ -49,6 +51,10 @@ class Handycaps_Slider {
 	const plugin_slug = 'handycapsslider';
 
 	protected $plugin_slug = 'handycapsslider';
+
+	private $sliderTable;
+
+	private $slideTable;
 
 	/**
 	 * Instance of this class.
@@ -73,10 +79,24 @@ class Handycaps_Slider {
 		// Activate plugin when new blog is added
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 
-		// Load public-facing style sheet and JavaScript.
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_filter('widget_text', 'do_shortcode');
 
+		$this->setSliderTable();
+
+		$this->setSlideTable();
+
+	}
+
+	private function setSliderTable() {
+		global $wpdb;
+
+		$this->sliderTable = $wpdb->prefix . self::plugin_slug . 'sliders';
+	}
+
+	private function setSlideTable() {
+		global $wpdb;
+
+		$this->slideTable = $wpdb->prefix . self::plugin_slug . 'sliders';
 	}
 
 	/**
@@ -224,9 +244,114 @@ class Handycaps_Slider {
 
 	}
 
+	private static function getSlides($id, $sItem, $sCaption) {
+
+		$slideA = self::getSlidesInfo($id);
+
+		foreach ($slideA as $assoc) {
+			$imgLink = $assoc['imgLink'];
+			$caption = isset($assoc['imgCaption']) ? $assoc['imgCaption'] : '';
+			$altText = 'placeholder';
+
+			include 'views/slides.php';
+		}
+	}
+
+	private static function getSlidesInfo($sliderId) {
+		global $wpdb;
+
+		$slideTable = $wpdb->prefix . self::plugin_slug . '_slides';
+
+		$posts = $wpdb->posts;
+
+		$sql = $wpdb->prepare(
+
+				"SELECT {$posts}.guid AS imgLink, {$posts}.post_excerpt AS imgCaption
+				FROM $posts
+				INNER JOIN $slideTable ON {$slideTable}.slider_id = %d
+				WHERE {$posts}.ID = {$slideTable}.slide_id
+				"
+				, $sliderId
+			);
+
+		return $wpdb->get_results($sql, ARRAY_A);
+	}
+
+	private static function getSliderClasses($id) {
+		global $wpdb;
+
+		$tablename = $wpdb->prefix . self::plugin_slug . '_sliders';
+
+		$sql = $wpdb->prepare("SELECT name, item, caption FROM $tablename WHERE id = %d", $id);
+
+		$sliderA = array_filter($wpdb->get_row($sql, ARRAY_A), 'strlen');
+
+		return array_map(function($val){
+			return str_replace(' ', '', strtolower($val));
+		}, $sliderA);
+	}
+
+	private static function getSliderInfo($id) {
+		global $wpdb;
+
+		$tablename = $wpdb->prefix . self::plugin_slug . '_sliders';
+
+		$sql = $wpdb->prepare("SELECT * FROM $tablename WHERE id = %d", $id);
+
+		$sliderA = array_filter($wpdb->get_row($sql, ARRAY_A), 'strlen');
+
+		return $sliderA;
+	}
+
+	private static function getSlider($id) {
+
+		$classes = self::getSliderClasses($id);
+
+		$sContainer = isset($classes['name']) ? '_slider_' . $classes['name'] : 'slider-container';
+		$sItem = isset($classes['item']) ? $classes['item'] : 'slider-item';
+		$sCaption = isset($classes['caption']) ? $classes['caption'] : 'slider-caption';
+
+		include 'views/sliders.php';
+	}
+
+	private static function sliderVars($id) {
+		$varA = self::getSliderInfo($id);
+
+		foreach ($varA as $options => $value) {
+
+			if ($options === 'name' || $options === 'id') {
+				if ($options === 'id') {
+					echo '';
+				} else {
+					echo "container: '_slider_" . strtolower($value) . "', ";
+				}
+
+			} else {
+				echo $options . ": '" . strtolower($value) . "', ";
+			}
+		}
+	}
+
+	public static function initSlider() {
+
+		$classes = self::getSliderClasses(self::$slider);
+
+		include 'views/init-scripts.php';
+	}
+
 	public static function shortcode($atts) {
 
-		include_once 'views/public.php';
+		if (empty($atts)) {
+			return;
+		}
+
+		self::enqueue_scripts();
+
+		self::$slider = $atts['id'];
+
+		add_action('wp_footer', array('Handycaps_Slider', 'initSlider'), 100);
+
+		include 'views/public.php';
 	}
 
 	private static function setupDB() {
@@ -235,7 +360,8 @@ class Handycaps_Slider {
 		$pf = $wpdb->prefix;
 		$tablename = $pf . self::plugin_slug;
 
-		$sql = "CREATE TABLE IF NOT EXISTS {$tablename}_sliders (
+		$sql =
+		"CREATE TABLE IF NOT EXISTS {$tablename}_sliders (
 			id int NOT NULL AUTO_INCREMENT,
 			name VARCHAR(50),
 			item varchar(50),
@@ -262,16 +388,15 @@ class Handycaps_Slider {
 			chevrons tinyint(1),
 
 			PRIMARY KEY  id (id)
-			)";
+			) ENGINE=InnoDB";
 
 		$sql2 = "CREATE TABLE IF NOT EXISTS {$tablename}_slides (
 			id int not null AUTO_INCREMENT,
 			slide_id int NOT NULL,
-			slider_id int NOT NULL,
+			slider_id int NOT NULL REFERENCES {$tablename}_sliders (id) ON DELETE CASCADE,
 			slide_order int DEFAULT 0,
-			PRIMARY KEY  id (id),
-			FOREIGN KEY  (slider_id) REFERENCES {$tablename}_sliders (id) ON DELETE CASCADE
-			)";
+			PRIMARY KEY  id (id)
+			) ENGINE=InnoDB";
 
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
@@ -327,8 +452,8 @@ class Handycaps_Slider {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin_slug . '-plugin-script', plugins_url( 'assets/js/handyCAPSSlider.min.js', __FILE__ ), array(), self::VERSION, true );
+	public static function enqueue_scripts() {
+		wp_enqueue_script( self::plugin_slug . '-plugin-script', plugins_url( 'assets/js/handyCAPSSlider.min.js', __FILE__ ), array(), self::VERSION, true );
 	}
 
 

@@ -43,11 +43,11 @@ class Handycaps_Slider_Admin {
 
 	private $sliderTable;
 
-	private $sliderVars = array();
+	private $sliderVars    = array();
 
 	private $sliderOptions = array();
 
-	private $sliderValues = array();
+	private $sliderValues  = array();
 
 	/**
 	 * Initialize the plugin by loading admin scripts & styles and adding a
@@ -88,6 +88,8 @@ class Handycaps_Slider_Admin {
 		add_action('wp_ajax_save_slide', array($this, 'save_slide'));
 
 		add_action('wp_ajax_delete_slide', array($this, 'delete_slide'));
+
+		add_action('wp_ajax_delete_slider', array($this, 'delete_slider'));
 
 		$this->setSlideTable();
 
@@ -226,6 +228,17 @@ class Handycaps_Slider_Admin {
 
 	}
 
+	private function removeSingle($tablename, $id) {
+		global $wpdb;
+
+
+		if ($wpdb->delete($tablename, array('id' => $id), array('%d'))) {
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+
 	private function removeSlide($id) {
 
 		global $wpdb;
@@ -255,6 +268,26 @@ class Handycaps_Slider_Admin {
 		die();
 	}
 
+	public function delete_slider() {
+
+		check_ajax_referer('delete-single-slider', 'deleteSliderNonce');
+
+		if (!$this->checkIntval(intval($_POST['sliderId']))) {
+			die();
+		}
+
+		if ($this->removeSingle($this->sliderTable, $_POST['sliderId'])) {
+			echo $this->display_plugin_admin_page();
+		} else {
+			if (WP_DEBUG) {
+				global $wpdb;
+				echo $wpdb->last_query;
+			}
+		}
+
+		die();
+	}
+
 	public function save_slide() {
 
 		check_ajax_referer('add-slider-image-777j0K', 'addNonce');
@@ -280,10 +313,10 @@ class Handycaps_Slider_Admin {
 
 		global $wpdb;
 
-		$id = $_POST['slideId'];
-		$slider = $_POST['sliderId'];
+		$id = intval($_POST['slideId']);
+		$slider = intval($_POST['sliderId']);
 
-		if ($this->removeSlide($id)) {
+		if ($this->removeSingle($this->slideTable, $id)) {
 
 			echo $this->get_slides($slider);
 
@@ -303,7 +336,7 @@ class Handycaps_Slider_Admin {
 		$tablename = $this->sliderTable;
 		$slideTable = $this->slideTable;
 
-		$sql = "SELECT {$tablename}.id, {$tablename}.name
+		$sql = "SELECT name, id
 		FROM $tablename
 		";
 
@@ -425,17 +458,15 @@ class Handycaps_Slider_Admin {
 		/*
 		 * Add a settings page for this plugin to the Settings menu.
 		 *
-		 * NOTE:  Alternative menu locations are available via WordPress administration menu functions.
-		 *
-		 *        Administration Menus: http://codex.wordpress.org/Administration_Menus
-		 *
 		 */
-		$this->plugin_screen_hook_suffix = add_options_page(
+		$this->plugin_screen_hook_suffix = add_menu_page(
 			__( 'HandyCAPSSlider', $this->plugin_slug ),
 			__( 'HandyCAPSSlider', $this->plugin_slug ),
 			'manage_options',
 			$this->plugin_slug,
-			array( $this, 'display_plugin_admin_page' )
+			array( $this, 'display_plugin_admin_page' ),
+			'dashicons-images-alt2',
+			'35.78'
 		);
 
 	}
@@ -454,6 +485,7 @@ class Handycaps_Slider_Admin {
 
 		include 'views/admin.php';
 		include 'views/addslider-form.php';
+
 	}
 
 	/**

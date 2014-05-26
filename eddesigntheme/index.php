@@ -26,15 +26,5 @@
 
 <?php wp_footer(); ?>
 
-<script>
-	handyCAPSSlider.init({
-		container: 'side-slide',
-		bullets: false,
-		minis: false,
-		animType: 'spin'
-	});
-</script>
-
-
 </body>
 </html>

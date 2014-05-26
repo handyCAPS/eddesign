@@ -32,7 +32,7 @@ class Handycaps_Slider {
 	 */
 	const VERSION = '1.0.0';
 
-	private static $slider;
+	private static $slider = array();
 
 	/**
 	 * @TODO - Rename "handycapsslider" to the name of your plugin
@@ -334,9 +334,11 @@ class Handycaps_Slider {
 
 	public static function initSlider() {
 
-		$classes = self::getSliderClasses(self::$slider);
+		foreach(self::$slider as $lSlider) {
+			$classes = self::getSliderClasses($lSlider);
 
-		include 'views/init-scripts.php';
+			include 'views/init-scripts.php';
+		}
 	}
 
 	public static function shortcode($atts) {
@@ -347,7 +349,7 @@ class Handycaps_Slider {
 
 		self::enqueue_scripts();
 
-		self::$slider = $atts['id'];
+		self::$slider[] = $atts['id'];
 
 		add_action('wp_footer', array('Handycaps_Slider', 'initSlider'), 100);
 

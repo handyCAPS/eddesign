@@ -3,9 +3,6 @@
 
 	$(function () {
 
-
-
-
 		function listenForAdd(dialog) {
 
 			$('.addslider-button').on('click', function() {
@@ -45,21 +42,34 @@
 		}
 
 		function makeSortable() {
+
 			$('.slider-wrapper').each(function() {
 
-			$('[data-sliderid="' + $(this).attr('data-sliderid') + '"]').sortable({
-					change: function() {
+				var sliderId = $(this).attr('data-sliderid');
 
-						var sortedA = $(this).sortable('toArray', {
-							attribute: 'data-slideid'
-						}).map(function(index, value) {
-							return [index,value];
-						});
+				$('[data-sliderid="' + sliderId + '"]').sortable({
+						stop: function() {
 
-						var fullArray = sortedA;
+							var sortedA = $(this).sortable('toArray', {
+								attribute: 'data-slideid'
+							});
 
-					}
-				});
+							var sortNonce = $(this).attr('data-wpSortnonce');
+
+							var data = {
+								action: 'sort_all_slides',
+								sliderId: sliderId,
+								sortNonce: sortNonce,
+								orderArray: sortedA
+							};
+
+							$.post(ajaxurl, data, function(response) {
+								console.log(response);
+							});
+
+
+						}
+					});
 			});
 
 		}
@@ -74,7 +84,7 @@
 				e.preventDefault();
 
 				var addNonce = $(e.currentTarget).parent('.handycapsslider').attr('data-wpnonce');
-				var sliderId = $(e.currentTarget).parent('.handycapsslider').attr('data-sliderid');
+				var sliderId = $(e.currentTarget).parent('.handycapsslider').attr('data-parent-sliderid');
 
 
 				handyCAPSUploader = wp.media.frames.file_frame = wp.media({
@@ -98,7 +108,7 @@
 
 						$.post(ajaxurl, data, function(response) {
 
-							$('[data-sliderid="' + sliderId + '"] .slider-wrapper').html(response);
+							$('[data-parent-sliderid="' + sliderId + '"] .slider-wrapper').html(response);
 
 							listenForDelete();
 						});

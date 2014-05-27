@@ -83,13 +83,7 @@ class Handycaps_Slider_Admin {
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
-		add_action('wp_ajax_new_slider', array($this, 'new_slider'));
-
-		add_action('wp_ajax_save_slide', array($this, 'save_slide'));
-
-		add_action('wp_ajax_delete_slide', array($this, 'delete_slide'));
-
-		add_action('wp_ajax_delete_slider', array($this, 'delete_slider'));
+		$this->ajaxActions();
 
 		$this->setSlideTable();
 
@@ -147,6 +141,18 @@ class Handycaps_Slider_Admin {
 		global $wpdb;
 
 		$this->sliderTable = $wpdb->prefix . $this->plugin_slug . '_sliders';
+	}
+
+	private function ajaxActions() {
+		add_action('wp_ajax_new_slider', array($this, 'new_slider'));
+
+		add_action('wp_ajax_save_slide', array($this, 'save_slide'));
+
+		add_action('wp_ajax_delete_slide', array($this, 'delete_slide'));
+
+		add_action('wp_ajax_delete_slider', array($this, 'delete_slider'));
+
+		add_action('wp_ajax_sort_all_slides', array($this, 'sort_all_slides'));
 	}
 
 	private function setSliderValues($formA) {
@@ -239,18 +245,6 @@ class Handycaps_Slider_Admin {
 		return FALSE;
 	}
 
-	private function removeSlide($id) {
-
-		global $wpdb;
-
-		$tablename = $this->slideTable;
-
-		if ($wpdb->delete($tablename, array('id' => $id), array('%d'))) {
-			return true;
-		}
-
-		return false;
-	}
 
 	public function new_slider() {
 
@@ -267,6 +261,7 @@ class Handycaps_Slider_Admin {
 
 		die();
 	}
+
 
 	public function delete_slider() {
 
@@ -288,6 +283,7 @@ class Handycaps_Slider_Admin {
 		die();
 	}
 
+
 	public function save_slide() {
 
 		check_ajax_referer('add-slider-image-777j0K', 'addNonce');
@@ -307,6 +303,7 @@ class Handycaps_Slider_Admin {
 
 		die();
 	}
+
 
 	public function delete_slide() {
 		check_ajax_referer('delete-slider-image-055HbbM0', 'deleteNonce');
@@ -330,6 +327,43 @@ class Handycaps_Slider_Admin {
 		die();
 	}
 
+
+	public function sort_all_slides() {
+		global $wpdb;
+		check_ajax_referer('sort-all-slides', 'sortNonce' );
+
+		$sId = $_POST['sliderId'];
+		$sAr = $_POST['orderArray'];
+		$this->updateSlideOrder($sId, $sAr);
+
+		if (WP_DEBUG) {
+			echo 'Query Failed' . $wpdb->last_query;
+		}
+
+
+		die();
+	}
+	private function updateSlideOrder($sliderId, $slideOrderA) {
+
+		global $wpdb;
+
+		$tablename = $this->slideTable;
+
+		$weGood = TRUE;
+
+		if (!is_array($slideOrderA)) {
+			return;
+		}
+
+		foreach ($slideOrderA as $order => $slideId) {
+			if (!$wpdb->update($tablename, array('slide_order' => $order), array('id' => $slideId, 'slider_id' => $sliderId), array('%d', '%d') )) {
+				$weGood = FALSE;
+				};
+			}
+
+			return $weGood;
+		}
+
 	private function get_slider_info() {
 		global $wpdb;
 
@@ -351,7 +385,7 @@ class Handycaps_Slider_Admin {
 
 		$sql = "SELECT {$posts}.guid AS imgLink, {$posts}.post_excerpt AS imgCaption, {$slideTable}.id AS slideId FROM $posts
 			JOIN $slideTable ON {$slideTable}.slider_id = $slider
-			WHERE {$posts}.ID = {$slideTable}.slide_id
+			WHERE {$posts}.ID = {$slideTable}.slide_id ORDER BY {$slideTable}.slide_order
 		";
 
 		return $wpdb->get_results($sql);

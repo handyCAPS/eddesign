@@ -41,6 +41,10 @@ h3 {
 	vertical-align: top;
 }
 
+.ui-sortable .slider-images {
+	cursor: move;
+}
+
 .slider-images:hover .delete, .slider-images:focus .delete {
 	display: block;
 	opacity: 1;
@@ -61,6 +65,10 @@ h3 {
 	border-radius: 3px;
 	background-color: #DDD;
 	font-family: 'Consolas', Courier, monospace;
+}
+
+.shortcode-wrapper {
+	text-align: right;
 }
 
 .delete {

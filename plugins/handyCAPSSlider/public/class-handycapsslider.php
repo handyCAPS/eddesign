@@ -269,7 +269,7 @@ class Handycaps_Slider {
 				"SELECT {$posts}.guid AS imgLink, {$posts}.post_excerpt AS imgCaption
 				FROM $posts
 				INNER JOIN $slideTable ON {$slideTable}.slider_id = %d
-				WHERE {$posts}.ID = {$slideTable}.slide_id
+				WHERE {$posts}.ID = {$slideTable}.slide_id ORDER BY {$slideTable}.slide_order
 				"
 				, $sliderId
 			);

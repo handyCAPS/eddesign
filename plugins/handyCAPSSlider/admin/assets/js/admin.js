@@ -3,6 +3,8 @@
 
 	$(function () {
 
+		var dialog;
+
 		function listenForAdd(dialog) {
 
 			$('.addslider-button').on('click', function() {
@@ -41,6 +43,7 @@
 			});
 		}
 
+
 		function makeSortable() {
 
 			$('.slider-wrapper').each(function() {
@@ -48,7 +51,9 @@
 				var sliderId = $(this).attr('data-sliderid');
 
 				$('[data-sliderid="' + sliderId + '"]').sortable({
-						stop: function() {
+						update: function() {
+
+							$('[data-parent-sliderid="' + sliderId + '"]').addClass('loadbar');
 
 							var sortedA = $(this).sortable('toArray', {
 								attribute: 'data-slideid'
@@ -64,7 +69,7 @@
 							};
 
 							$.post(ajaxurl, data, function(response) {
-								console.log(response);
+								$('[data-parent-sliderid="' + sliderId + '"]').removeClass('loadbar');
 							});
 
 
@@ -149,9 +154,13 @@
 
 			$('.delete.slide').on('click', function(e) {
 
+
+
 				var slideId = $(e.currentTarget).attr('data-slideid'),
 				deleteNonce = $(e.currentTarget).attr('data-wpnonce'),
-				sliderId = $(e.currentTarget).parents('.handycapsslider').attr('data-sliderid');
+				sliderId = $(e.currentTarget).parents('.handycapsslider').attr('data-parent-sliderid');
+
+				$('[data-parent-sliderid="' + sliderId + '"]').addClass('loadbar');
 
 				var data = {
 					action: 'delete_slide',
@@ -161,15 +170,16 @@
 				};
 
 				$.post(ajaxurl, data, function(response) {
-					$('[data-sliderid="' + sliderId + '"] .slider-wrapper').html(response);
+					$('[data-parent-sliderid="' + sliderId + '"] .slider-wrapper').html(response);
 					listenForDelete();
+					$('[data-parent-sliderid="' + sliderId + '"]').removeClass('loadbar');
 				});
 			});
 		}
 
 		function init() {
 
-			var dialog = $('.addsliderwrapper').dialog({
+			dialog = $('.addsliderwrapper').dialog({
 				modal: true,
 				autoOpen: false
 			});

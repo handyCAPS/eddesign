@@ -43,11 +43,13 @@ class Handycaps_Slider_Admin {
 
 	private $sliderTable;
 
-	private $sliderVars    = array();
+	private $sliderVars     = array();
 
-	private $sliderOptions = array();
+	private $sliderOptions  = array();
 
-	private $sliderValues  = array();
+	private $sliderValues   = array();
+
+	private $sliderDefaults = array();
 
 	/**
 	 * Initialize the plugin by loading admin scripts & styles and adding a
@@ -56,15 +58,6 @@ class Handycaps_Slider_Admin {
 	 * @since     1.0.0
 	 */
 	private function __construct() {
-
-		/*
-		 * @TODO :
-		 *
-		 * - Uncomment following lines if the admin class should only be available for super admins
-		 */
-		/* if( ! is_super_admin() ) {
-			return;
-		} */
 
 		/*
 		 * Call $plugin_slug from public plugin class.
@@ -88,6 +81,8 @@ class Handycaps_Slider_Admin {
 		$this->setSlideTable();
 
 		$this->setSliderTable();
+
+		$this->setSliderDefaults();
 
 
 		/*
@@ -141,6 +136,29 @@ class Handycaps_Slider_Admin {
 		global $wpdb;
 
 		$this->sliderTable = $wpdb->prefix . $this->plugin_slug . '_sliders';
+	}
+
+	private function setSliderDefaults() {
+		$this->sliderDefaults = array(
+				'name' => '',
+				'item'=> 'slider-item',
+				'caption'=> 'slider-caption',
+				'slideDur' => '7s',
+				'animationDur' => '2s',
+				'timingFunc' => 'cubic-bezier(0.75,0,0.3,1)',
+				'animType' => 'normal',
+				'itemWidth' => '100%',
+				'itemHeight' => 'auto',
+				'captionHeight' => '33.3333%',
+				'capMinHeight' => '',
+				'captionColor' => 'rgba(0,,0,0,0.4)',
+				'capTextColor' => '#FFF',
+				'capFontSize' => '16px',
+				'bulletSize' => '16px',
+				'bulletColor' => '#7F8C8D',
+				'bulletBright' => '-30',
+				'bulAltColor' => '#657273'
+			);
 	}
 
 	private function ajaxActions() {
@@ -431,10 +449,6 @@ class Handycaps_Slider_Admin {
 	/**
 	 * Register and enqueue admin-specific style sheet.
 	 *
-	 * @TODO:
-	 *
-	 * - Rename "Handycaps_Slider" to the name your plugin
-	 *
 	 * @since     1.0.0
 	 *
 	 * @return    null    Return early if no settings page is registered.
@@ -448,16 +462,16 @@ class Handycaps_Slider_Admin {
 		$screen = get_current_screen();
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
 			wp_enqueue_style( $this->plugin_slug .'-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array(), Handycaps_Slider::VERSION );
+
+
+			wp_enqueue_style('wp-jquery-ui');
+			wp_enqueue_style('wp-jquery-ui-dialog');
 		}
 
 	}
 
 	/**
 	 * Register and enqueue admin-specific JavaScript.
-	 *
-	 * @TODO:
-	 *
-	 * - Rename "Handycaps_Slider" to the name your plugin
 	 *
 	 * @since     1.0.0
 	 *
@@ -476,8 +490,6 @@ class Handycaps_Slider_Admin {
 			wp_enqueue_script('jquery-ui');
 			wp_enqueue_script('jquery-ui-dialog' );
 
-			wp_enqueue_style('wp-jquery-ui');
-			wp_enqueue_style('wp-jquery-ui-dialog');
 		}
 
 	}
@@ -516,8 +528,17 @@ class Handycaps_Slider_Admin {
 
 		$sliderA = array();
 
+		$phA = $this->sliderDefaults;
 
 		include 'views/admin.php';
+
+	}
+
+	public function showAddSliderForm($id = FALSE) {
+		if (!$id) {
+			$phA = $this->sliderDefaults;
+		}
+
 		include 'views/addslider-form.php';
 
 	}

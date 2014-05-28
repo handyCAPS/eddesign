@@ -71,6 +71,13 @@ h3 {
 	text-align: right;
 }
 
+.loadbar::after {
+	content: url(../img/ajax-loader.gif);
+	position: absolute;
+	left: 4px;
+	top: 4px;
+}
+
 .delete {
 	font-size: 0px;
 	position: absolute;
@@ -130,6 +137,10 @@ h3 {
 	margin-right: 12px;
 	display: inline-block;
 	cursor: default;
+}
+
+.addslider input[required]:invalid {
+	background-color: #F80;
 }
 
 .addslider label, .addslider input:not([type='checkbox']):not([type='submit']) {

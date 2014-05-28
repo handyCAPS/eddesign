@@ -5,7 +5,7 @@
 	<div class="delete slider" data-sliderid="<?php echo $sliderId; ?>" title='Delete' data-wpnonce="<?php echo wp_create_nonce('delete-single-slider'); ?>">Delete</div>
 
 	<div class="shortcode-wrapper">
-		<div class="sliderNum">[handycapsslider id='<?php echo $sliderId; ?>']</div>
+		<div class="sliderNum" contentEditable>[handycapsslider id='<?php echo $sliderId; ?>']</div>
 	</div>
 	<h3><?php echo $sliderName; ?></h3>
 

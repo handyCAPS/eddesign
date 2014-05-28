@@ -396,7 +396,7 @@ class Handycaps_Slider {
 			id int not null AUTO_INCREMENT,
 			slide_id int NOT NULL,
 			slider_id int NOT NULL REFERENCES {$tablename}_sliders (id) ON DELETE CASCADE,
-			slide_order int DEFAULT 0,
+			slide_order int DEFAULT 100,
 			PRIMARY KEY  id (id)
 			) ENGINE=InnoDB";
 

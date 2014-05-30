@@ -11,7 +11,7 @@
 
 
 	<input id="upload_button_slider<?php echo $sliderId; ?>" class="button add-media" type="button" value="Add Image">
-	<input type="button" class="button editslider" value="<?php _e('Edit Slider', 'handycapsslider'); ?>"><br>
+	<input type="button" class="button editslider" value="<?php _e('Edit Slider', 'handycapsslider'); ?>" data-sliderid="<?php echo $sliderId; ?>" data-wpEditnonce="<?php echo wp_create_nonce('edit-single-slider'); ?>"><br>
 
 	<div class="slider-wrapper" data-sliderid="<?php echo $sliderId; ?>" data-wpSortnonce="<?php echo wp_create_nonce('sort-all-slides'); ?>">
 		<?php $this->get_slides($sliderId); ?>

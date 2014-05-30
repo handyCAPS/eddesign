@@ -291,7 +291,7 @@ class Handycaps_Slider {
 		}, $sliderA);
 	}
 
-	private static function getSliderInfo($id) {
+	public static function getSliderInfo($id) {
 		global $wpdb;
 
 		$tablename = $wpdb->prefix . self::plugin_slug . '_sliders';
@@ -323,7 +323,7 @@ class Handycaps_Slider {
 				if ($options === 'id') {
 					echo '';
 				} else {
-					echo "container: '_slider_" . strtolower($value) . "', ";
+					echo "container: '_slider_" . str_replace(' ', '',strtolower($value)) . "', ";
 				}
 
 			} else {

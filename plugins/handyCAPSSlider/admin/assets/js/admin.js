@@ -5,6 +5,14 @@
 
 		var dialog;
 
+		function lbOn(sliderId) {
+			$('[data-parent-sliderid="' + sliderId + '"]').addClass('loadbar');
+		}
+
+		function lbOff(sliderId) {
+			$('[data-parent-sliderid="' + sliderId + '"]').removeClass('loadbar');
+		}
+
 		function listenForAdd(dialog) {
 
 			$('.addslider-button').on('click', function() {
@@ -17,6 +25,28 @@
 			});
 
 
+		}
+
+		function listenForEdit() {
+			$('.editslider').on('click', function() {
+
+				var sliderId = $(this).attr('data-sliderid'),
+				editNonce = $(this).attr('data-wpEditnonce');
+
+				lbOn(sliderId);
+
+				var data = {
+					action: 'edit_single_slider',
+					editNonce: editNonce,
+					sliderId: sliderId
+				};
+
+				$.post(ajaxurl, data, function(response) {
+					console.log(response);
+
+					lbOff(sliderId);
+				});
+			});
 		}
 
 		function listenForSubmit(dialog) {
@@ -53,7 +83,7 @@
 				$('[data-sliderid="' + sliderId + '"]').sortable({
 						update: function() {
 
-							$('[data-parent-sliderid="' + sliderId + '"]').addClass('loadbar');
+							lbOn(sliderId);
 
 							var sortedA = $(this).sortable('toArray', {
 								attribute: 'data-slideid'
@@ -69,7 +99,7 @@
 							};
 
 							$.post(ajaxurl, data, function(response) {
-								$('[data-parent-sliderid="' + sliderId + '"]').removeClass('loadbar');
+								lbOff(sliderId);
 							});
 
 
@@ -135,6 +165,8 @@
 				var sliderId = $(e.currentTarget).attr('data-sliderid'),
 				deleteSliderNonce = $(e.currentTarget).attr('data-wpnonce');
 
+				lbOn(sliderId);
+
 				var data = {
 					action: 'delete_slider',
 					deleteSliderNonce: deleteSliderNonce,
@@ -160,7 +192,7 @@
 				deleteNonce = $(e.currentTarget).attr('data-wpnonce'),
 				sliderId = $(e.currentTarget).parents('.handycapsslider').attr('data-parent-sliderid');
 
-				$('[data-parent-sliderid="' + sliderId + '"]').addClass('loadbar');
+				lbOn(sliderId);
 
 				var data = {
 					action: 'delete_slide',
@@ -170,9 +202,12 @@
 				};
 
 				$.post(ajaxurl, data, function(response) {
+
 					$('[data-parent-sliderid="' + sliderId + '"] .slider-wrapper').html(response);
+
 					listenForDelete();
-					$('[data-parent-sliderid="' + sliderId + '"]').removeClass('loadbar');
+
+					lbOff(sliderId);
 				});
 			});
 		}
@@ -193,6 +228,8 @@
 			listenForDeleteSlider();
 
 			listenForAdd(dialog);
+
+			listenForEdit();
 
 		}
 

@@ -140,24 +140,24 @@ class Handycaps_Slider_Admin {
 
 	private function setSliderDefaults() {
 		$this->sliderDefaults = array(
-				'name' => '',
-				'item'=> 'slider-item',
-				'caption'=> 'slider-caption',
-				'slideDur' => '7s',
-				'animationDur' => '2s',
-				'timingFunc' => 'cubic-bezier(0.75,0,0.3,1)',
-				'animType' => 'normal',
-				'itemWidth' => '100%',
-				'itemHeight' => 'auto',
+				'name'          => '',
+				'item'          => 'slider-item',
+				'caption'       => 'slider-caption',
+				'slideDur'      => '7s',
+				'animationDur'  => '2s',
+				'timingFunc'    => 'cubic-bezier(0.75,0,0.3,1)',
+				'animType'      => 'normal',
+				'itemWidth'     => '100%',
+				'itemHeight'    => 'auto',
 				'captionHeight' => '33.3333%',
-				'capMinHeight' => '',
-				'captionColor' => 'rgba(0,,0,0,0.4)',
-				'capTextColor' => '#FFF',
-				'capFontSize' => '16px',
-				'bulletSize' => '16px',
-				'bulletColor' => '#7F8C8D',
-				'bulletBright' => '-30',
-				'bulAltColor' => '#657273'
+				'capMinHeight'  => '',
+				'captionColor'  => 'rgba(0,,0,0,0.4)',
+				'capTextColor'  => '#FFF',
+				'capFontSize'   => '16px',
+				'bulletSize'    => '16px',
+				'bulletColor'   => '#7F8C8D',
+				'bulletBright'  => '-30',
+				'bulAltColor'   => '#657273'
 			);
 	}
 
@@ -171,6 +171,8 @@ class Handycaps_Slider_Admin {
 		add_action('wp_ajax_delete_slider', array($this, 'delete_slider'));
 
 		add_action('wp_ajax_sort_all_slides', array($this, 'sort_all_slides'));
+
+		add_action('wp_ajax_edit_single_slider', array($this, 'edit_single_slider'));
 	}
 
 	private function setSliderValues($formA) {
@@ -297,6 +299,19 @@ class Handycaps_Slider_Admin {
 				echo $wpdb->last_query;
 			}
 		}
+
+		die();
+	}
+
+	public function edit_single_slider() {
+
+		check_ajax_referer('edit-single-slider', 'editNonce');
+
+		$sliderVals = Handycaps_Slider::getSliderInfo($_POST['sliderId']);
+
+		$this->setSliderValues($sliderVals);
+
+		echo print_r($this->sliderValues);
 
 		die();
 	}
@@ -530,11 +545,15 @@ class Handycaps_Slider_Admin {
 
 		$phA = $this->sliderDefaults;
 
+		$this->showAddSliderForm();
+
 		include 'views/admin.php';
 
 	}
 
-	public function showAddSliderForm($id = FALSE) {
+	public function showAddSliderForm($id = FALSE,$editClass = '') {
+
+
 		if (!$id) {
 			$phA = $this->sliderDefaults;
 		}

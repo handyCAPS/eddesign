@@ -1,5 +1,5 @@
 
-<div class="addsliderwrapper">
+<div class="addsliderwrapper <?php echo $editClass;  ?>">
 	<form action="" method="POST" id="addslider-form" class="form addslider">
 		<fieldset>
 			<legend><?php _e('Add slider', $this->plugin_slug); ?></legend>
@@ -23,10 +23,10 @@
 			<input type="checkbox" name="highlightMinis" id="highlightMinis" value="1" checked="checked">
 			<br>
 			<label for="slideDur"><?php _e('Slide duration', $this->plugin_slug); ?></label>
-			<input class="small" pattern="[0-9]s|ms$" type="text" name="slideDur" id="slideDur" placeholder="<?php echo $phA['slideDur']; ?>">
+			<input class="small" pattern="[0-9]+(s|ms)?$" type="text" name="slideDur" id="slideDur" placeholder="<?php echo $phA['slideDur']; ?>">
 			<br>
 			<label for="animationDur"><?php _e('Animation duration', $this->plugin_slug); ?></label>
-			<input class="small" type="text" pattern="[0-9]s|ms$" name="animationDur" id="animationDur" placeholder="<?php echo $phA['animationDur']; ?>">
+			<input class="small" type="text" pattern="[0-9]+(s|ms)?$" name="animationDur" id="animationDur" placeholder="<?php echo $phA['animationDur']; ?>">
 			<br>
 			<label for="timingFunc"><?php _e('Animation swing', $this->plugin_slug); ?></label>
 			<input type="text" name="timingFunc" id="timingFunc" placeholder="<?php echo $phA['timingFunc']; ?>" title="ease | ease-out | ease-in | ease-in-out | linear | cubic-bezier(0,0,1,1)">
